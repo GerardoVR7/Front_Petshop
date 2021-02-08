@@ -1,9 +1,9 @@
 import React from 'react'
 import update from 'immutability-helper'
 import APIInvoker from "./utils/APIInvoker";
-import {Link} from "react-router-dom";
 
-class Login extends React.Component{
+class SignUp extends React.Component{
+
 
     constructor() {
         super();
@@ -37,7 +37,6 @@ class Login extends React.Component{
             })
     }
     signup(e){
-        //Signup
         let user = {
             nombre: this.state.nombre,
             apellido: this.state.apellido,
@@ -54,36 +53,51 @@ class Login extends React.Component{
 
     render() {
         return(
-            <section>
-                <section className="justify-content-center" id="login">
-                    <div className="container my-5 text-white" >
-                        <div className="row d-flex justify-content-center" >
-                            <div className="col-sm-10 col-md-8 col-lg-6 col-xl-6 border  " id="parte1" >
-                                <h1 className="display-6 py-3">Agarra Patas Petshop Login</h1>
+                <section className="justify-content-center" id="signup">
+                    <div className="container my-5 text-white">
+                        <div className="row d-flex justify-content-center">
+                            <div className="col-sm-10 col-md-8 col-lg-6 col-xl-6 border " id="parte1">
+                                <h1 className="display-6 py-3">Agarra Patas Petshop Signup</h1>
                             </div>
                         </div>
-                        <div className="row d-flex justify-content-center" id="form" >
-                            <div className="col-sm-10 col-md-8 col-lg-6 col-xl-6 border  " id="parte1">
+                        <div className="row d-flex justify-content-center">
+                            <div className="col-sm-10 col-md-8 col-lg-6 col-xl-6 border " id="parte1">
                                 <br/>
                                 <br/>
                                 <form >
-                                    <div className="mb-3"  >
-                                        <label htmlFor="username" className="form-label" >Nombre de usuario</label>
+                                    <div className="mb-3">
+                                        <label htmlFor="nombre" className="form-label">Nombre</label>
+                                        <input type="text"
+                                               className="form-control"
+                                                                        id="nombre"
+                                               placeholder="ingresa tu nombre"
+                                               aria-describedby="usernameHelp"
+                                               value={this.state.nombre}
+                                               onChange={this.changeField.bind(this)}/>
+                                    </div>
+                                    <div className="mb-3">
+                                        <label htmlFor="apellido" className="form-label">Apellido</label>
+                                        <input type="text"
+                                               className="form-control"
+                                               name="apellido"
+                                               id="apellido"
+                                               placeholder="ingresa tu apellido"
+                                               aria-describedby="apellidoHelp"
+                                               value={this.state.apellido}
+                                               onChange={this.changeField.bind(this)}/>
+                                    </div>
+                                    <div className="mb-3">
+                                        <label htmlFor="usernameSignup" className="form-label">Nombre de usuario</label>
                                         <input type="text"
                                                className="form-control"
                                                name="username"
                                                id="username"
                                                placeholder="ingresa tu usuario"
-                                               aria-describedby="usernameHelp"
+                                               aria-describedby="usernameSignupHelp"
                                                value={this.state.username}
-                                               onChange={this.changeField.bind(this)}
-                                        />
-                                        <div id="usernameMessage"
-                                             ref={ self => this.label = self}
-                                             className="form-text text-white">
-                                        </div>
+                                               onChange={this.changeField.bind(this)}/>
+
                                     </div>
-                                    <br/>
                                     <div className="py-3">
                                         <label htmlFor="password" className="form-label">Contraseña</label>
                                         <input type="password"
@@ -98,11 +112,8 @@ class Login extends React.Component{
                                              className="form-text text-danger">
                                         </div>
                                     </div>
-                                    <br/>
-                                    <a href="./SignUp.js" class="button"> AQUI PTM</a>
-
                                     <div className="d-grid gap-3 py-3">
-                                        <button type="button" className="btn btn-outline-light" onClick={this.usernameValidate.bind(this)}>Iniciar sesión</button>
+                                        <button type="button" className="btn btn-outline-light" onClick={this.signup.bind(this)}>Iniciar sesión </button>
                                     </div>
                                 </form>
                             </div>
@@ -110,7 +121,7 @@ class Login extends React.Component{
                     </div>
 
                 </section>
-            </section>
+
 
         )
     }
@@ -118,4 +129,4 @@ class Login extends React.Component{
 
 }
 
-export default Login;
+export default SignUp;

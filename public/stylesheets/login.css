@@ -1,14 +1,30 @@
 .box-login {
-    background-color: #5B6064;
+    background-color: #F97DFF;
     color: white;
+
 }
 
 #img-login {
-    width: 30%;
+    width: 20%;
 }
 
 #container-login {
     border: red solid 1px;
-    background-color: #474672;
+    background-color: #F97DFF;
     color: white;
+}
+
+#login{
+    height: 1200px;
+    width: 700px;
+    text-align: center;
+    margin: auto;
+}
+
+#form{
+    height: 400px;
+}
+
+#parte1 {
+    background-color: #1F81B9;
 }
