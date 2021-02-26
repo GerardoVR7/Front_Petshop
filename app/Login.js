@@ -1,7 +1,6 @@
 import React from 'react'
 import update from 'immutability-helper'
 import APIInvoker from "./utils/APIInvoker";
-import {Link} from "react-router-dom";
 
 class Login extends React.Component{
 
@@ -29,27 +28,25 @@ class Login extends React.Component{
             data => {
                 //Primera forma de obtener la referencia de un control en el DOM
                 //let label = document.getElementById('usernameMessage')
-                this.label.innerHTML = data.message
+                this.label.innerHTML = ''
             },
             error => {
                 //let label = document.getElementById('usernameMessage')
-                this.label.innerHTML = error.message
+                this.label.innerHTML = 'la cuenta del usuario no existe'
             })
     }
-    signup(e){
-        //Signup
+    iniciarSesion(e){
         let user = {
-            nombre: this.state.nombre,
-            apellido: this.state.apellido,
             username: this.state.username,
             password: this.state.password
         }
-        APIInvoker.invokePOST('/users/signup',user, data => {
+
+        APIInvoker.invokePOST('/users/login',user,data => {
             alert(JSON.stringify(data))
-        }, error => {
-            alert(JSON.stringify(error))
+            window.localStorage.setItem('token',data.token)
+        }, error =>{
+            this.pass.innerHTML = error.message
         })
-        e.preventDefault();
     }
 
     render() {
@@ -77,11 +74,8 @@ class Login extends React.Component{
                                                aria-describedby="usernameHelp"
                                                value={this.state.username}
                                                onChange={this.changeField.bind(this)}
-                                        />
-                                        <div id="usernameMessage"
-                                             ref={ self => this.label = self}
-                                             className="form-text text-white">
-                                        </div>
+                                               onBlur={this.usernameValidate.bind(this)}/>
+                                        <div className="label-error" ref={ self => this.label = self}></div>
                                     </div>
                                     <br/>
                                     <div className="py-3">
@@ -94,15 +88,11 @@ class Login extends React.Component{
                                                aria-describedby="passwordHelp"
                                                value={this.state.password}
                                                onChange={this.changeField.bind(this)}/>
-                                        <div id="passwordHelp"
-                                             className="form-text text-danger">
-                                        </div>
+                                        <div className="label-error" ref={ self => this.pass = self}> </div>
                                     </div>
                                     <br/>
-                                    <a href="./SignUp.js" class="button"> AQUI PTM</a>
-
                                     <div className="d-grid gap-3 py-3">
-                                        <button type="button" className="btn btn-outline-light" onClick={this.usernameValidate.bind(this)}>Iniciar sesión</button>
+                                        <button type="button" className="btn btn-outline-light" onClick={this.iniciarSesion.bind(this)}>Iniciar sesión</button>
                                     </div>
                                 </form>
                             </div>

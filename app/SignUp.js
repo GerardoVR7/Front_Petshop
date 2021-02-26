@@ -9,8 +9,12 @@ class SignUp extends React.Component{
         super();
         this.state = {
             username:'',
-            password:''
+            password:'',
+            nombre:'',
+            apellido:''
         }
+        this.status = false
+        this.usernameOk = false
     }
 
     changeField(e) {
@@ -23,20 +27,23 @@ class SignUp extends React.Component{
         }))
     }
 
-    usernameValidate(e){
+    validateUsername(e) {
         let username = this.state.username
-        APIInvoker.invokeGET(`/users/usernameValidate/${username}`,
-            data => {
-                //Primera forma de obtener la referencia de un control en el DOM
-                //let label = document.getElementById('usernameMessage')
-                this.label.innerHTML = data.message
-            },
-            error => {
-                //let label = document.getElementById('usernameMessage')
-                this.label.innerHTML = error.message
+        if (username) {
+            APIInvoker.invokeGET(`/users/usernameValidate/${username}`,data => {
+                this.username.innerHTML = '* El nombre de usuario no está disponible'
+                this.usernameOk = false
+            }, error => {
+                this.username.innerHTML = '* El nombre de usuario está disponible'
+                this.usernameOk =  true
             })
+        } else
+            this.usernameOk = false
     }
     signup(e){
+        this.messageError.innerHTML = ''
+        this.validarCampos()
+        if (this.status && this.usernameOk) {
         let user = {
             nombre: this.state.nombre,
             apellido: this.state.apellido,
@@ -44,11 +51,43 @@ class SignUp extends React.Component{
             password: this.state.password
         }
         APIInvoker.invokePOST('/users/signup',user, data => {
-            alert(JSON.stringify(data))
+            alert(data.message)
+            this.usernameOk = false
         }, error => {
-            alert(JSON.stringify(error))
-        })
+            alert(error.message + error.error)
+        })}else
+        this.messageError.innerHTML = 'Los campos marcados con * son obligatorios'
         e.preventDefault();
+    }
+    validarCampos(){
+        let estado = true;
+        if (this.state.nombre.length === 0) {
+            this.nombre.innerHTML = '* Campo obligatorio'
+            estado = false;
+        } else
+            this.nombre.innerHTML = ''
+
+        if (this.state.apellido.length === 0) {
+            this.apellido.innerHTML = '* Campo obligatorio'
+            estado = false;
+        } else
+            this.apellido.innerHTML = ''
+
+        if (this.state.username.length === 0) {
+            this.username.innerHTML = '* Campo obligatorio'
+            estado = false;
+        }
+
+        if (this.state.password.length === 0) {
+            this.password.innerHTML = '* Campo obligatorio'
+            estado = false;
+        } else
+            this.password.innerHTML = ''
+
+        if (estado === false)
+            this.status = false
+        else
+            this.status = true
     }
 
     render() {
@@ -69,11 +108,13 @@ class SignUp extends React.Component{
                                         <label htmlFor="nombre" className="form-label">Nombre</label>
                                         <input type="text"
                                                className="form-control"
-                                                                        id="nombre"
+                                               name="nombre"
+                                               id="nombre"
                                                placeholder="ingresa tu nombre"
                                                aria-describedby="usernameHelp"
                                                value={this.state.nombre}
                                                onChange={this.changeField.bind(this)}/>
+                                        <label ref={self=> this.nombre = self}></label>
                                     </div>
                                     <div className="mb-3">
                                         <label htmlFor="apellido" className="form-label">Apellido</label>
@@ -85,6 +126,7 @@ class SignUp extends React.Component{
                                                aria-describedby="apellidoHelp"
                                                value={this.state.apellido}
                                                onChange={this.changeField.bind(this)}/>
+                                        <label ref={self=> this.apellido = self}></label>
                                     </div>
                                     <div className="mb-3">
                                         <label htmlFor="usernameSignup" className="form-label">Nombre de usuario</label>
@@ -95,7 +137,9 @@ class SignUp extends React.Component{
                                                placeholder="ingresa tu usuario"
                                                aria-describedby="usernameSignupHelp"
                                                value={this.state.username}
-                                               onChange={this.changeField.bind(this)}/>
+                                               onChange={this.changeField.bind(this)}
+                                               onBlur={this.validateUsername.bind(this)}/>
+                                        <label ref={self=> this.username = self}></label>
 
                                     </div>
                                     <div className="py-3">
@@ -108,12 +152,12 @@ class SignUp extends React.Component{
                                                aria-describedby="passwordHelp"
                                                value={this.state.password}
                                                onChange={this.changeField.bind(this)}/>
-                                        <div id="passwordHelp"
-                                             className="form-text text-danger">
-                                        </div>
+                                        <label ref={self=> this.password = self}></label>
+
                                     </div>
                                     <div className="d-grid gap-3 py-3">
                                         <button type="button" className="btn btn-outline-light" onClick={this.signup.bind(this)}>Iniciar sesión </button>
+                                        <div ref={self => this.messageError = self}></div>
                                     </div>
                                 </form>
                             </div>
