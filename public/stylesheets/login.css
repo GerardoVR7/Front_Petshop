@@ -26,5 +26,12 @@
 }
 
 #parte1 {
-    background-color: #1F81B9;
+    align-content: center;
+    background-color: #cccccc;
+}
+#textcolor {
+    color: white;
+    font-size: 25px;
+    font-style: oblique;
+
 }

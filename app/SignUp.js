@@ -1,6 +1,7 @@
 import React from 'react'
 import update from 'immutability-helper'
 import APIInvoker from "./utils/APIInvoker";
+import {Link} from "react-router-dom";
 
 class SignUp extends React.Component{
 
@@ -95,12 +96,24 @@ class SignUp extends React.Component{
                 <section className="justify-content-center" id="signup">
                     <div className="container my-5 text-white">
                         <div className="row d-flex justify-content-center">
-                            <div className="col-sm-10 col-md-8 col-lg-6 col-xl-6 border " id="parte1">
-                                <h1 className="display-6 py-3">Agarra Patas Petshop Signup</h1>
+                            <div className="col-sm-10 col-md-8 col-lg-6 col-xl-6 border " id="parte1" style={{
+                                backgroundImage: 'url("public/images/img_3.png")'
+                            }}>
+                                <Link to='/'>
+                                    <h2 id="textcolor">regresar a la pagina principal</h2>
+                                </Link>
+                                <h1 className="display-6 py-3 ">Agarra Patas Petshop Signup
+
+                                </h1>
+                                <div>
+                                    <img src="public/images/Los-animales-más-celosos-3.gif" width={225} height={150} id="imagen"/>
+                                </div>
                             </div>
                         </div>
-                        <div className="row d-flex justify-content-center">
-                            <div className="col-sm-10 col-md-8 col-lg-6 col-xl-6 border " id="parte1">
+                        <div className="row d-flex justify-content-center" >
+                            <div className="col-sm-10 col-md-8 col-lg-6 col-xl-6 border " id="parte1" style={{
+                                backgroundImage: 'url("public/images/img_3.png")'
+                            }}>
                                 <br/>
                                 <br/>
                                 <form >

@@ -1,6 +1,7 @@
 import React from 'react'
 import update from 'immutability-helper'
 import APIInvoker from "./utils/APIInvoker";
+import {Link} from "react-router-dom";
 
 class Login extends React.Component{
 
@@ -51,21 +52,31 @@ class Login extends React.Component{
 
     render() {
         return(
-            <section>
+
+            <section >
                 <section className="justify-content-center" id="login">
-                    <div className="container my-5 text-white" >
+                    <div className="container my-5 text-white"  >
                         <div className="row d-flex justify-content-center" >
-                            <div className="col-sm-10 col-md-8 col-lg-6 col-xl-6 border  " id="parte1" >
-                                <h1 className="display-6 py-3">Agarra Patas Petshop Login</h1>
+                            <div className="col-sm-10 col-md-8 col-lg-6 col-xl-6 border  " id="parte1" style={{
+                                backgroundImage: 'url("public/images/img_3.png")'
+                            }}>
+                                    <Link to='/'>
+                                        <h2 id="textcolor">regresar a la pagina principal</h2>
+                                    </Link>
+                                <h1 className="display-6 py-3" id="textcolor" >Agarra Patas Petshop Login
+                                    <img src="public/images/login.png" width={225} height={150} />
+                                </h1>
                             </div>
                         </div>
                         <div className="row d-flex justify-content-center" id="form" >
-                            <div className="col-sm-10 col-md-8 col-lg-6 col-xl-6 border  " id="parte1">
+                            <div className="col-sm-10 col-md-8 col-lg-6 col-xl-6 border  " id="parte1" style={{
+                                backgroundImage: 'url("public/images/img_3.png")'
+                            }}>
                                 <br/>
                                 <br/>
                                 <form >
                                     <div className="mb-3"  >
-                                        <label htmlFor="username" className="form-label" >Nombre de usuario</label>
+                                        <label htmlFor="username" className="form-label" id="textcolor" >Nombre de usuario</label>
                                         <input type="text"
                                                className="form-control"
                                                name="username"
@@ -75,11 +86,11 @@ class Login extends React.Component{
                                                value={this.state.username}
                                                onChange={this.changeField.bind(this)}
                                                onBlur={this.usernameValidate.bind(this)}/>
-                                        <div className="label-error" ref={ self => this.label = self}></div>
+                                        <div className="label-error" ref={ self => this.label = self} id="textcolor"></div>
                                     </div>
                                     <br/>
                                     <div className="py-3">
-                                        <label htmlFor="password" className="form-label">Contraseña</label>
+                                        <label htmlFor="password" className="form-label" id="textcolor">Contraseña</label>
                                         <input type="password"
                                                className="form-control"
                                                name="password"
@@ -88,11 +99,11 @@ class Login extends React.Component{
                                                aria-describedby="passwordHelp"
                                                value={this.state.password}
                                                onChange={this.changeField.bind(this)}/>
-                                        <div className="label-error" ref={ self => this.pass = self}> </div>
+                                        <div className="label-error" ref={ self => this.pass = self} id="textcolor"> </div>
                                     </div>
                                     <br/>
                                     <div className="d-grid gap-3 py-3">
-                                        <button type="button" className="btn btn-outline-light" onClick={this.iniciarSesion.bind(this)}>Iniciar sesión</button>
+                                        <button type="button" className="btn btn-outline-light" onClick={this.iniciarSesion.bind(this)} id="textcolor">Iniciar sesión</button>
                                     </div>
                                 </form>
                             </div>
