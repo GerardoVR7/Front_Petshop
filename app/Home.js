@@ -1,13 +1,14 @@
 import React from "react";
 import {Link} from "react-router-dom";
+import Header from "./components/Header";
 
 class Home extends React.Component{
     render(){
         return(
             <>
 
+                <Header />
                 <h1>
-                    <img src="public/images/img_2.png" width={800} height={200} />
                     Bienvenido a la Pagina principal A garra patas</h1>
                 <Link to='/Login'>
                     <h2>Login</h2>

@@ -2,6 +2,7 @@ import React from 'react'
 import update from 'immutability-helper'
 import APIInvoker from "./utils/APIInvoker";
 import {Link} from "react-router-dom";
+import Header from "./components/Header";
 
 class Login extends React.Component{
 
@@ -58,19 +59,20 @@ class Login extends React.Component{
                     <div className="container my-5 text-white"  >
                         <div className="row d-flex justify-content-center" >
                             <div className="col-sm-10 col-md-8 col-lg-6 col-xl-6 border  " id="parte1" style={{
-                                backgroundImage: 'url("public/images/img_3.png")'
+                                backgroundImage: 'url("public/images/fondo.png")'
                             }}>
                                     <Link to='/'>
-                                        <h2 id="textcolor">regresar a la pagina principal</h2>
+                                        <h2 id="textcolor"> <Header/> </h2>
                                     </Link>
-                                <h1 className="display-6 py-3" id="textcolor" >Agarra Patas Petshop Login
-                                    <img src="public/images/login.png" width={225} height={150} />
+                                <h1 className="display-6 py-3" id="textcolor" >Login
+
                                 </h1>
+                                <img src="public/images/login.png" width={225} height={150} />
                             </div>
                         </div>
                         <div className="row d-flex justify-content-center" id="form" >
                             <div className="col-sm-10 col-md-8 col-lg-6 col-xl-6 border  " id="parte1" style={{
-                                backgroundImage: 'url("public/images/img_3.png")'
+                                backgroundImage: 'url("public/images/fondo.png")'
                             }}>
                                 <br/>
                                 <br/>
