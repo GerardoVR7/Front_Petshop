@@ -55,15 +55,16 @@ class Login extends React.Component{
         return(
 
             <section >
+                <Link to='/'>
+                    <h2 id="textcolor"> <Header/> </h2>
+                </Link>
                 <section className="justify-content-center" id="login">
                     <div className="container my-5 text-white"  >
                         <div className="row d-flex justify-content-center" >
                             <div className="col-sm-10 col-md-8 col-lg-6 col-xl-6 border  " id="parte1" style={{
                                 backgroundImage: 'url("public/images/fondo.png")'
                             }}>
-                                    <Link to='/'>
-                                        <h2 id="textcolor"> <Header/> </h2>
-                                    </Link>
+
                                 <h1 className="display-6 py-3" id="textcolor" >Login
 
                                 </h1>
