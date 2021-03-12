@@ -2,6 +2,8 @@ import React from 'react'
 import update from 'immutability-helper'
 import APIInvoker from "../utils/APIInvoker";
 import {Link} from "react-router-dom";
+import HeaderClient from "./HeaderClient";
+import Header from "./Header";
 
 class SignUp extends React.Component{
 
@@ -93,15 +95,16 @@ class SignUp extends React.Component{
 
     render() {
         return(
-                <section className="justify-content-center" id="signup">
-                    <div className="container my-5 text-white">
+                <section className="xd justify-content-center" id="signup" style={{
+                    backgroundImage: 'url("public/images/klk.jpg")', height:1033, width:1520
+                }}>
+                    <div className="container my-5 text-white justify-content-center">
+                        <Header/>
                         <div className="row d-flex justify-content-center">
-                            <div className="col-sm-10 col-md-8 col-lg-6 col-xl-6 border " id="parte1" style={{
+                            <div className="col-sm-10 col-md-8 col-lg-6 col-xl-6 justify-content-center" id="parte1" style={{
                                 backgroundImage: 'url("public/images/img_3.png")'
                             }}>
-                                <Link to='/'>
-                                    <h2 id="textcolor">regresar a la pagina principal</h2>
-                                </Link>
+
                                 <h1 className="display-6 py-3 ">Agarra Patas Petshop Signup
 
                                 </h1>

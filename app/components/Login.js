@@ -54,10 +54,11 @@ class Login extends React.Component{
     render() {
         return(
 
-            <section >
-                <Link to='/'>
+            <section  style={{
+                backgroundImage: 'url("public/images/klk.jpg")', height:1033, width:1520
+            }}>
+
                     <h2 id="textcolor"> <Header/> </h2>
-                </Link>
                 <section className="justify-content-center" id="login">
                     <div className="container my-5 text-white"  >
                         <div className="row d-flex justify-content-center" >

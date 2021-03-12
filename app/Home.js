@@ -19,6 +19,9 @@ class Home extends React.Component{
                 <Link to='/products'>
                     <h2>Products</h2>
                 </Link>
+                <Link to='/HomeClient'>
+                    <h2>home</h2>
+                </Link>
             </>
         )
     }
