@@ -16,6 +16,9 @@ class Home extends React.Component{
                 <Link to='/signup'>
                     <h2>SignUp</h2>
                 </Link>
+                <Link to='/products'>
+                    <h2>Products</h2>
+                </Link>
             </>
         )
     }

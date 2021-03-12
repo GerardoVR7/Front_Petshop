@@ -1,9 +1,12 @@
 import React from 'react'
-import Login from './Login';
-import SignUp from "./SignUp";
+import Login from './components/Login';
+import SignUp from "./components/SignUp";
+import Products from "./components/Products";
+import NotFound from "./components/NotFound";
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 import Home from "./Home";
-import NotFound from "./NotFound";
+
+
 
 class App extends React.Component{
     render() {
@@ -11,8 +14,9 @@ class App extends React.Component{
             <BrowserRouter>
                 <Switch>
                     <Route exact path='/' component={Home}/>
-                    <Route exact path='/login' component={Login}/>
-                    <Route exact path='/signup' component={SignUp}/>
+                    <Route exact path='/Login' component={Login}/>
+                    <Route exact path='/SignUp' component={SignUp}/>
+                    <Route exact path='/Products' component={Products}/>
                     <Route component={NotFound}/>
                 </Switch>
             </BrowserRouter>
