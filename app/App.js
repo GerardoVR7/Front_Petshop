@@ -6,6 +6,7 @@ import NotFound from "./components/NotFound";
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 import Home from "./Home";
 import HomeClient from "./pages/HomeClient";
+import Conocenos from "./pages/Conocenos";
 
 
 
@@ -19,8 +20,8 @@ class App extends React.Component{
                     <Route exact path='/SignUp' component={SignUp}/>
                     <Route exact path='/Products' component={Products}/>
                     <Route exact path='/HomeClient' component={HomeClient}/>
+                    <Route exact path='/Conocenos' component={Conocenos}/>
                     <Route component={NotFound}/>
-
                 </Switch>
             </BrowserRouter>
         )

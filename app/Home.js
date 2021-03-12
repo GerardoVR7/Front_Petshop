@@ -22,6 +22,9 @@ class Home extends React.Component{
                 <Link to='/HomeClient'>
                     <h2>home</h2>
                 </Link>
+                <Link to='/Conocenos'>
+                    <h2>Conocenos</h2>
+                </Link>
             </>
         )
     }
