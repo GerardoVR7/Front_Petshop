@@ -1,24 +1,27 @@
 import React from "react";
 import {Link} from "react-router-dom";
+import HeaderClient from "../components/HeaderClient";
 
 class Conocenos extends React.Component{
     render(){
         return(
-                <div style={{
+                <div className="xd justify-content-center" id="conocenos" style={{
                     backgroundImage: 'url("public/images/fondoHome.jpg")', height:1920, width:1080
                 }}>
+                    <HeaderClient />
                     <div className="row justify-content-center"  >
                         <ul style={{ height:400, width:600}}>
                             <li className="card">
                                 <img className="card-img-top" alt="Bootstrap Thumbnail First"
-                                     src='public/images/medicines.png'/>
+                                     src='public/images/Friends.jpg'/>
                                 <div className="card-block">
                                     <h5 className="card-title">
-                                        Por que la salud de tu peludito es lo que importa
+                                        Somos una empresa responsable con el cuidado de tu peludito
                                     </h5>
                                     <p className="card-text">
-                                        porque aqui en Agarra Patas, la salud de tu peludito importa mucho, es por eso que
-                                        manejamos productos, alimentos y servicios de la mas alta calidad para el bien estar de tu mascota.
+                                       Por que nuestra mision es Proporcionar servicios integrales de la más alta calidad para las mascotas a través de
+                                        sistemas preventivos, emergentes y de medicina interna para así mejorar la salud de las personas incrementando
+                                        la relación Humano-Animal.
                                     </p>
                                     <p>
                                     </p>
@@ -37,22 +40,17 @@ class Conocenos extends React.Component{
                 </p>
                             <li className="card">
                                 <img className="card-img-top" alt="Bootstrap Thumbnail Second"
-                                     src='public/images/imgHome2.png'/>
+                                     src='public/images/PerriLicenciados.jpg'/>
                                 <div className="card-block">
                                     <h5 className="card-title">
-                                        Alimentacion Balanceada
+                                        DE TU INTERÉS
                                     </h5>
-                                    <p className="card-text">
-                                        dales a tus mascotas la alimentacion perfecta, con nuestros especialistas
-                                        que te daran un plan nutritivo para la buena alimentacion de tu mascota.
-                                    </p>
-                                    <p>
-                                    </p>
                                 </div>
                             </li>
-                <Link to='/'>
-                    <h2>Pagina principal</h2>
-                </Link>
+                            <p >
+                                dales a tus mascotas la alimentacion perfecta, con nuestros especialistas
+                                que te daran un plan nutritivo para la buena alimentacion de tu mascota.
+                            </p>
                         </ul>
             </div>
                 </div>

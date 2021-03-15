@@ -76,7 +76,14 @@ class Login extends React.Component{
                             <div className="col-sm-10 col-md-8 col-lg-6 col-xl-6 border  " id="parte1" style={{
                                 backgroundImage: 'url("public/images/fondo.png")'
                             }}>
+
                                 <br/>
+                                <label htmlFor="Admin">Escoje tu rol:</label>
+
+                                <select name="Rol" id="Rol">
+                                    <option value="Administrador">Administrador</option>
+                                    <option value="Cliente">Cliente</option>
+                                </select>
                                 <br/>
                                 <form >
                                     <div className="mb-3"  >
