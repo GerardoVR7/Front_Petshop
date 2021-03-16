@@ -11,13 +11,22 @@ class ProductRegister extends React.Component{
     constructor() {
         super();
         this.state = {
+            idCategoria: '',
             nameProduct:'',
             price:'',
-            count:'',
-            category:'',
-            petType: ''
+            quantity:'',
+            petType: '',
+            categoryList: []
         }
         this.status = false
+        this.nameProductOk = false
+        //Extraer el catálogo de roles del backend
+        APIInvoker.invokeGET('/categories/getAllCategories',data => {  //Entrará acá cuando status = true
+            this.setState({
+                categoryList : data.data
+            })
+        }, error => { //Entrará acá cuando status = false
+        })
     }
 
     changeField(e) {
@@ -34,31 +43,31 @@ class ProductRegister extends React.Component{
         let nameProduct = this.state.nameProduct
         if (nameProduct) {
             APIInvoker.invokeGET(`/products/productValidate/${nameProduct}`,data => {
-                this.username.innerHTML = '* El nombre de usuario no está disponible'
-                this.usernameOk = false
+                this.nameProduct.innerHTML = '* El nombre de usuario no está disponible'
+                this.nameProductOk = false
             }, error => {
-                this.username.innerHTML = '* El nombre de usuario está disponible'
-                this.usernameOk =  true
+                this.nameProduct.innerHTML = '* El nombre de usuario está disponible'
+                this.nameProductOk =  true
             })
         } else
-            this.usernameOk = false
+            this.nameProductOk = false
     }
 
 
     altProduct(e){
         this.messageError.innerHTML = ''
         this.validarCampos()
-        if (this.status && this.usernameOk) {
+        if (this.status && this.nameProductOk) {
             let product = {
+                idCategoria: this.state.idCategoria,
                 nameProduct: this.state.nameProduct,
                 price: this.state.price,
-                count: this.state.count,
-                category: this.state.category,
+                quantity: this.state.quantity,
                 petType: this.state.petType
             }
             APIInvoker.invokePOST('/products/insertProduct',product, data => {
                 alert(data.message)
-                this.usernameOk = false
+                this.nameProductOk = false
             }, error => {
                 alert(error.message + error.error)
             })}else
@@ -67,6 +76,13 @@ class ProductRegister extends React.Component{
     }
     validarCampos(){
         let estado = true;
+
+        if (this.state.idCategoria.length === 0) {
+            this.idCategoria.innerHTML = '* Campo obligatorio'
+            estado = false;
+        } else
+            this.idCategoria.innerHTML = ''
+
         if (this.state.nameProduct.length === 0) {
             this.nameProduct.innerHTML = '* Campo obligatorio'
             estado = false;
@@ -79,16 +95,11 @@ class ProductRegister extends React.Component{
         } else
             this.price.innerHTML = ''
 
-        if (this.state.count.length === 0) {
-            this.count.innerHTML = '* Campo obligatorio'
+        if (this.state.quantity.length === 0) {
+            this.quantity.innerHTML = '* Campo obligatorio'
             estado = false;
-        }
-
-        if (this.state.category.length === 0) {
-            this.category.innerHTML = '* Campo obligatorio'
-            estado = false;
-        } else
-            this.category.innerHTML = ''
+        }else
+            this.quantity.innerHTML = ''
 
         if (this.state.petType.length === 0) {
             this.petType.innerHTML = '* Campo obligatorio'
@@ -129,6 +140,19 @@ class ProductRegister extends React.Component{
                             <br/>
                             <br/>
                             <form >
+
+                                <div>
+                                    <label htmlFor='idCategoria'>Tipo de categoria</label>
+                                    <select name="idCategoria" id="idCategoria" value={this.state.idCategoria} onChange={this.changeField.bind(this)}>
+                                        <For each="item" index="idx" of={ this.state.categoryList }>
+                                            <option key={idx} value={item.idCategoria}>{item.nombre}</option>
+                                        </For>
+
+                                    </select>
+                                    <label ref={self=> this.idCategoria = self}></label>
+                                </div>
+
+
                                 <div className="mb-3">
                                     <label htmlFor="nameProduct" className="form-label">Nombre del producto</label>
                                     <input type="text"
@@ -155,30 +179,17 @@ class ProductRegister extends React.Component{
                                     <label ref={self=> this.price = self}></label>
                                 </div>
                                 <div className="mb-3">
-                                    <label htmlFor="countProduct" className="form-label">ingresar la cantidad</label>
+                                    <label htmlFor="quantityProduct" className="form-label">ingresar la cantidad</label>
                                     <input type="text"
                                            className="form-control"
-                                           name="count"
-                                           id="count"
+                                           name="quantity"
+                                           id="quantity"
                                            placeholder="ingresa la cantidad deseada"
-                                           aria-describedby="usernameSignupHelp"
-                                           value={this.state.count}
+                                           aria-describedby="quantityHelp"
+                                           value={this.state.quantity}
                                            onChange={this.changeField.bind(this)}
                                            onBlur={this.productValidate.bind(this)}/>
-                                    <label ref={self=> this.count = self}></label>
-
-                                </div>
-                                <div className="py-3">
-                                    <label htmlFor="category" className="form-label">Categoria del Producto</label>
-                                    <input type="text"
-                                           className="form-control"
-                                           name="category"
-                                           id="category"
-                                           placeholder="inserta una categoria"
-                                           aria-describedby="passwordHelp"
-                                           value={this.state.category}
-                                           onChange={this.changeField.bind(this)}/>
-                                    <label ref={self=> this.category = self}></label>
+                                    <label ref={self=> this.quantity = self}></label>
 
                                 </div>
 
