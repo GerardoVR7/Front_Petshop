@@ -56,8 +56,8 @@ class ProductRegister extends React.Component{
 
     altProduct(e){
         this.messageError.innerHTML = ''
-      //  this.validarCampos()
-        if (this.nameProductOk) {
+        this.validarCampos()
+        if (this.status === true  && this.nameProductOk === true) {
             let product = {
                 idCategory: this.state.idCategory,
                 nameProduct: this.state.nameProduct,
@@ -149,7 +149,7 @@ class ProductRegister extends React.Component{
                                         </For>
 
                                     </select>
-                                    <label ref={self=> this.idCategoria = self}></label>
+                                    <label ref={self=> this.idCategory = self}></label>
                                 </div>
 
 
