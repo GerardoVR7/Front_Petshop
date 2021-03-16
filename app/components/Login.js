@@ -12,6 +12,9 @@ class Login extends React.Component{
             username:'',
             password:''
         }
+
+        this.verification1 = false
+        this.verification2 = false
     }
 
     changeField(e) {
@@ -26,29 +29,46 @@ class Login extends React.Component{
 
     usernameValidate(e){
         let username = this.state.username
+
         APIInvoker.invokeGET(`/users/usernameValidate/${username}`,
             data => {
                 //Primera forma de obtener la referencia de un control en el DOM
                 //let label = document.getElementById('usernameMessage')
                 this.label.innerHTML = ''
+                if (data.status === true) {
+                    this.verification1 = true
+                }
+
             },
             error => {
                 //let label = document.getElementById('usernameMessage')
                 this.label.innerHTML = 'la cuenta del usuario no existe'
             })
     }
+
     iniciarSesion(e){
+
         let user = {
             username: this.state.username,
             password: this.state.password
         }
 
         APIInvoker.invokePOST('/users/login',user,data => {
+            if (data.status === true) {
+                this.verification2 = true
+            }
             alert(JSON.stringify(data))
             window.localStorage.setItem('token',data.token)
+
+
+
         }, error =>{
             this.pass.innerHTML = error.message
+            this.verification2 = false
         })
+
+
+
     }
 
     render() {
@@ -109,12 +129,19 @@ class Login extends React.Component{
                                                placeholder="inserta una password"
                                                aria-describedby="passwordHelp"
                                                value={this.state.password}
-                                               onChange={this.changeField.bind(this)}/>
+                                               onChange={this.changeField.bind(this)}
+                                               onBlur={this.iniciarSesion.bind(this)}/>
                                         <div className="label-error" ref={ self => this.pass = self} id="textcolor"> </div>
                                     </div>
                                     <br/>
                                     <div className="d-grid gap-3 py-3">
-                                        <button type="button" className="btn btn-outline-light" onClick={this.iniciarSesion.bind(this)} id="textcolor">Iniciar sesión</button>
+                                        <If condition = {this.verification2 === true} >
+                                            <If condition = {this.verification1 === true} >
+                                                <Link to='/HomeClient'>
+                                                <button type="button" className="btn btn-outline-light"  id="textcolor">Iniciar sesión</button>
+                                                </Link>
+                                            </If>
+                                        </If>
                                     </div>
                                 </form>
                             </div>
