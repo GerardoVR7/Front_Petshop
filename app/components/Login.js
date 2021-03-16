@@ -67,8 +67,6 @@ class Login extends React.Component{
             this.verification2 = false
         })
 
-
-
     }
 
     render() {

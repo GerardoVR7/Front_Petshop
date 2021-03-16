@@ -11,13 +11,22 @@ class SignUp extends React.Component{
     constructor() {
         super();
         this.state = {
+            idRol : '',
             username:'',
             password:'',
             nombre:'',
-            apellido:''
+            apellido:'',
+            rolList: []
         }
         this.status = false
         this.usernameOk = false
+        //Extraer el catálogo de roles del backend
+        APIInvoker.invokeGET('/rols/getAllRoles',data => {  //Entrará acá cuando status = true
+            this.setState({
+                rolList : data.data
+            })
+        }, error => { //Entrará acá cuando status = false
+        })
     }
 
     changeField(e) {
@@ -48,6 +57,7 @@ class SignUp extends React.Component{
         this.validarCampos()
         if (this.status && this.usernameOk) {
         let user = {
+            idRol: this.state.idRol,
             nombre: this.state.nombre,
             apellido: this.state.apellido,
             username: this.state.username,
@@ -64,6 +74,13 @@ class SignUp extends React.Component{
     }
     validarCampos(){
         let estado = true;
+
+        if (this.state.idRol.length === 0) {
+            this.idrRol.innerHTML = '* Campo obligatorio'
+            estado = false;
+        } else
+            this.idrRol.innerHTML = ''
+
         if (this.state.nombre.length === 0) {
             this.nombre.innerHTML = '* Campo obligatorio'
             estado = false;
@@ -120,6 +137,16 @@ class SignUp extends React.Component{
                                 <br/>
                                 <br/>
                                 <form >
+                                    <div>
+                                        <label htmlFor='idRol'>Tipo de usuario</label>
+                                        <select name="idRol" id="idRol" value={this.state.idRol} onChange={this.changeField.bind(this)}>
+                                            <For each="item" index="idx" of={ this.state.rolList }>
+                                                <option key={idx} value={item.idRol}>{item.rol}</option>
+                                            </For>
+
+                                        </select>
+                                        <label ref={self=> this.idrRol = self}></label>
+                                    </div>
                                     <div className="mb-3">
                                         <label htmlFor="nombre" className="form-label">Nombre</label>
                                         <input type="text"

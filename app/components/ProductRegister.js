@@ -149,7 +149,7 @@ class ProductRegister extends React.Component{
                                            name="price"
                                            id="price"
                                            placeholder="ingresa el precio del producto"
-                                           aria-describedby="apellidoHelp"
+                                           aria-describedby="priceHelp"
                                            value={this.state.price}
                                            onChange={this.changeField.bind(this)}/>
                                     <label ref={self=> this.price = self}></label>
