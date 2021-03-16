@@ -13,14 +13,15 @@ class Products extends React.Component {
             nombre: '',
             precio: '',
             cantidad: '',
-            categoria: '',
+            category: '',
             tipoMascota: '',
             productList: [],
             categoryList: [],
             petList: [],
-            specialList: []
+            specialList: [],
+            pakageList: []
         }
-
+        this.status = false
         this.productList = []
         this.categoryList = []
         this.petList = []
@@ -35,7 +36,7 @@ class Products extends React.Component {
             console.log(this.state.productList)
         }, error => { //Entrará acá cuando status = false
         })
-
+/*
         //Extraer el catálogo de roles del backend
         APIInvoker.invokeGET('/products/getAllCategory', data => {  //Entrará acá cuando status = true
             this.setState({
@@ -53,10 +54,27 @@ class Products extends React.Component {
             console.log(this.state.petList)
         }, error => { //Entrará acá cuando status = false
         })
+
+
+ */
+
+        //Extraer el catálogo de roles del backend
+        let categoria = this.state.category
+        if (categoria) {
+            APIInvoker.invokeGET(`/products/getAllAboutDogs/${categoria}`, data => {  //Entrará acá cuando status = true
+                this.setState({
+                    specialList: data.data
+                })
+                console.log(this.state.specialList)
+            }, error => {
+                //Entrará acá cuando status = false
+                alert( "no hay nada")
+            })
+        }
     }
 
     changeField(e) {
-        let field = e.target.categoria
+        let field = e.target.name
         let value = e.target.value
 
         this.setState(update(this.state, {
@@ -64,24 +82,7 @@ class Products extends React.Component {
         }))
     }
 
-    requestSpecification(e) {
 
-        let espec = {
-            categoria: this.state.categoria,
-            tipoMascota: this.state.tipoMascota,
-
-        }
-
-        //Extraer el catálogo de roles del backend
-        APIInvoker.invokeGET('/products/getAllCategory', espec, data => {  //Entrará acá cuando status = true
-            this.setState({
-                specialList : data.data
-            })
-            console.log(this.state.specialList)
-        }, error => { //Entrará acá cuando status = false
-        })
-
-    }
 
 
     render() {
@@ -96,45 +97,17 @@ class Products extends React.Component {
                     <h2 id="textcolor"> <Header/> </h2>
                 </Link>
 
-
                 <div>
 
+                <select name="categorySelect" id="category" value={this.state.category} onChange={this.changeField.bind(this)}>
+
+                    <option value={"alimento"}> alimento </option>
+                    <option value={"juguetes"}> juguetes </option>
 
 
-
-                    <form >
-                        <div className="mb-3">
-                            <label htmlFor="categoria" className="form-label">Categoria</label>
-                            <input type="text"
-                                   className="form-control"
-                                   name="categoria"
-                                   id="categoria"
-                                   placeholder="ingresa tu nombre"
-
-                                   value={this.state.categoria}
-                                   onChange={this.changeField.bind(this)}/>
-
-                        </div>
-                        <div className="mb-3">
-                            <label htmlFor="tipoMascota" className="form-label">Tipo Mascota</label>
-                            <input type="text"
-                                   className="form-control"
-                                   name="tipoMascota"
-                                   id="tipoMascota"
-                                   placeholder="ingresa tu apellido"
-
-                                   value={this.state.tipoMascota}
-                                   onChange={this.changeField.bind(this)}/>
-
-                        </div>
-
-                        <div className="d-grid gap-3 py-3">
-                            <button type="button" className="btn btn-outline-light" onClick={this.requestSpecification.bind(this)}>Iniciar sesión </button>
-
-                        </div>
-                    </form>
+                </select>
+                    <label ref={self=> this.category = self}></label>
                 </div>
-
 
 
                     <table name="idProducto" id="idProducto" value={this.state.idProducto} onChange={this.changeField.bind(this)} >

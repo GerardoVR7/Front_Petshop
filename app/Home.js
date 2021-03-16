@@ -25,6 +25,9 @@ class Home extends React.Component{
                 <Link to='/Conocenos'>
                     <h2>Conocenos</h2>
                 </Link>
+                <Link to='/ProductRegister'>
+                    <h2>Admin Product prueba</h2>
+                </Link>
             </>
         )
     }
