@@ -11,7 +11,7 @@ class ProductRegister extends React.Component{
     constructor() {
         super();
         this.state = {
-            idCategoria: '',
+            idCategory: '',
             nameProduct:'',
             price:'',
             quantity:'',
@@ -59,7 +59,7 @@ class ProductRegister extends React.Component{
         this.validarCampos()
         if (this.status && this.nameProductOk) {
             let product = {
-                idCategoria: this.state.idCategoria,
+                idCategory: this.state.idCategory,
                 nameProduct: this.state.nameProduct,
                 price: this.state.price,
                 quantity: this.state.quantity,
@@ -77,11 +77,11 @@ class ProductRegister extends React.Component{
     validarCampos(){
         let estado = true;
 
-        if (this.state.idCategoria.length === 0) {
-            this.idCategoria.innerHTML = '* Campo obligatorio'
+        if (this.state.idCategory.length === 0) {
+            this.idCategory.innerHTML = '* Campo obligatorio'
             estado = false;
         } else
-            this.idCategoria.innerHTML = ''
+            this.idCategory.innerHTML = ''
 
         if (this.state.nameProduct.length === 0) {
             this.nameProduct.innerHTML = '* Campo obligatorio'
@@ -142,8 +142,8 @@ class ProductRegister extends React.Component{
                             <form >
 
                                 <div>
-                                    <label htmlFor='idCategoria'>Tipo de categoria</label>
-                                    <select name="idCategoria" id="idCategoria" value={this.state.idCategoria} onChange={this.changeField.bind(this)}>
+                                    <label htmlFor='idCategory'>Tipo de categoria</label>
+                                    <select name="idCategory" id="idCategory" value={this.state.idCategory} onChange={this.changeField.bind(this)}>
                                         <For each="item" index="idx" of={ this.state.categoryList }>
                                             <option key={idx} value={item.idCategoria}>{item.nombre}</option>
                                         </For>
@@ -200,7 +200,7 @@ class ProductRegister extends React.Component{
                                            name="petType"
                                            id="petType"
                                            placeholder="inserta el tipo de mascota"
-                                           aria-describedby="passwordHelp"
+                                           aria-describedby="petTypeHelp"
                                            value={this.state.petType}
                                            onChange={this.changeField.bind(this)}/>
                                     <label ref={self=> this.petType = self}></label>
