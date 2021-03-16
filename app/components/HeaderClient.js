@@ -10,7 +10,7 @@ class HeaderClient extends React.Component {
                         <div className="col-md-12" >
                             <ul className="nav nav-pills justify-content-center" >
                                 <li className="nav-item">
-                                    <Link to='/HomeClient/ConocenosSite'>
+                                    <Link to='/HomeClient/Conocenos'>
                                     <a className="nav-link" href="#">Conocenos</a>
                                     </Link>
                                 </li>
@@ -31,9 +31,10 @@ class HeaderClient extends React.Component {
                                     <a className="nav-link" href="#">Citas</a>
                                     </Link>
                                 </li>
-                                <li className="nav-item">
+                                <li className="option">
                                     <Link to='/HomeClient/Productos'>
-                                    <a className="nav-link" href="#">Productos</a>
+                                        <a className="nav-link" href="#">Productos</a>
+
                                     </Link>
                                 </li>
 
