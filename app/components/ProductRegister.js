@@ -30,10 +30,10 @@ class ProductRegister extends React.Component{
         }))
     }
 
-    validateUsername(e) {
-        let username = this.state.username
-        if (username) {
-            APIInvoker.invokeGET(`/users/usernameValidate/${username}`,data => {
+    productValidate(e) {
+        let nameProduct = this.state.nameProduct
+        if (nameProduct) {
+            APIInvoker.invokeGET(`/products/productValidate/${nameProduct}`,data => {
                 this.username.innerHTML = '* El nombre de usuario no está disponible'
                 this.usernameOk = false
             }, error => {
@@ -45,17 +45,18 @@ class ProductRegister extends React.Component{
     }
 
 
-    signup(e){
+    altProduct(e){
         this.messageError.innerHTML = ''
         this.validarCampos()
         if (this.status && this.usernameOk) {
-            let user = {
-                nombre: this.state.nombre,
-                apellido: this.state.apellido,
-                username: this.state.username,
-                password: this.state.password
+            let product = {
+                nameProduct: this.state.nameProduct,
+                price: this.state.price,
+                count: this.state.count,
+                category: this.state.category,
+                petType: this.state.petType
             }
-            APIInvoker.invokePOST('/users/signup',user, data => {
+            APIInvoker.invokePOST('/products/insertProduct',product, data => {
                 alert(data.message)
                 this.usernameOk = false
             }, error => {
@@ -113,7 +114,7 @@ class ProductRegister extends React.Component{
                             backgroundImage: 'url("public/images/img_3.png")'
                         }}>
 
-                            <h1 className="display-6 py-3 ">Agarra Patas Petshop Signup
+                            <h1 className="display-6 py-3 ">Agarra Patas Petshop Product Register
 
                             </h1>
                             <div>
@@ -137,50 +138,65 @@ class ProductRegister extends React.Component{
                                            placeholder="ingresa el nombre del producto"
                                            aria-describedby="usernameHelp"
                                            value={this.state.nameProduct}
-                                           onChange={this.changeField.bind(this)}/>
+                                           onChange={this.changeField.bind(this)}
+                                           onBlur={this.productValidate.bind(this)}/>
                                     <label ref={self=> this.nameProduct = self}></label>
                                 </div>
                                 <div className="mb-3">
-                                    <label htmlFor="apellido" className="form-label">Apellido</label>
+                                    <label htmlFor="price" className="form-label">Precio del producto</label>
                                     <input type="text"
                                            className="form-control"
-                                           name="apellido"
-                                           id="apellido"
-                                           placeholder="ingresa tu apellido"
+                                           name="price"
+                                           id="price"
+                                           placeholder="ingresa el precio del producto"
                                            aria-describedby="apellidoHelp"
-                                           value={this.state.apellido}
+                                           value={this.state.price}
                                            onChange={this.changeField.bind(this)}/>
-                                    <label ref={self=> this.apellido = self}></label>
+                                    <label ref={self=> this.price = self}></label>
                                 </div>
                                 <div className="mb-3">
-                                    <label htmlFor="usernameSignup" className="form-label">Nombre de usuario</label>
+                                    <label htmlFor="countProduct" className="form-label">ingresar la cantidad</label>
                                     <input type="text"
                                            className="form-control"
-                                           name="username"
-                                           id="username"
-                                           placeholder="ingresa tu usuario"
+                                           name="count"
+                                           id="count"
+                                           placeholder="ingresa la cantidad deseada"
                                            aria-describedby="usernameSignupHelp"
-                                           value={this.state.username}
+                                           value={this.state.count}
                                            onChange={this.changeField.bind(this)}
-                                           onBlur={this.validateUsername.bind(this)}/>
-                                    <label ref={self=> this.username = self}></label>
+                                           onBlur={this.productValidate.bind(this)}/>
+                                    <label ref={self=> this.count = self}></label>
 
                                 </div>
                                 <div className="py-3">
-                                    <label htmlFor="password" className="form-label">Contraseña</label>
-                                    <input type="password"
+                                    <label htmlFor="category" className="form-label">Categoria del Producto</label>
+                                    <input type="text"
                                            className="form-control"
-                                           name="password"
-                                           id="password"
-                                           placeholder="inserta una password"
+                                           name="category"
+                                           id="category"
+                                           placeholder="inserta una categoria"
                                            aria-describedby="passwordHelp"
-                                           value={this.state.password}
+                                           value={this.state.category}
                                            onChange={this.changeField.bind(this)}/>
-                                    <label ref={self=> this.password = self}></label>
+                                    <label ref={self=> this.category = self}></label>
+
+                                </div>
+
+                                <div className="py-3">
+                                    <label htmlFor="petType" className="form-label">Tipo de mascota</label>
+                                    <input type="text"
+                                           className="form-control"
+                                           name="petType"
+                                           id="petType"
+                                           placeholder="inserta el tipo de mascota"
+                                           aria-describedby="passwordHelp"
+                                           value={this.state.petType}
+                                           onChange={this.changeField.bind(this)}/>
+                                    <label ref={self=> this.petType = self}></label>
 
                                 </div>
                                 <div className="d-grid gap-3 py-3">
-                                    <button type="button" className="btn btn-outline-light" onClick={this.signup.bind(this)}>Iniciar sesión </button>
+                                    <button type="button" className="btn btn-outline-light" onClick={this.altProduct.bind(this)}>Iniciar sesión </button>
                                     <div ref={self => this.messageError = self}></div>
                                 </div>
                             </form>
