@@ -100,13 +100,14 @@ class Products extends React.Component {
                 <div>
 
                 <select name="categorySelect" id="category" value={this.state.category} onChange={this.changeField.bind(this)}>
-
-                    <option value={"alimento"}> alimento </option>
-                    <option value={"juguetes"}> juguetes </option>
-
+                    <For each="item" index="idx" of={ this.state.specialList }>
+                        <option key={idx} value={item.idProducto}>
+                            {item.Categoria}
+                        </option>
+                    </For>
 
                 </select>
-                    <label ref={self=> this.category = self}></label>
+
                 </div>
 
 
