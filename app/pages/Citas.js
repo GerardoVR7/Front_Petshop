@@ -9,6 +9,8 @@ class Citas extends React.Component{
                 backgroundImage: 'url("public/images/fondoHome.jpg")', height:1920, width:1080
             }}>
                 <HeaderClient />
+                <img className="card-img-top" alt="Bootstrap Thumbnail First"
+                     src='public/images/PugSegurity.png'/>
             </div>
         )
     }
