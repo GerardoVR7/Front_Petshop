@@ -217,7 +217,7 @@ class ProductRegister extends React.Component{
                                 </div>
 
                                 <div className="d-grid gap-3 py-3">
-                                    <button type="button" className="btn btn-outline-light" onClick={this.altProduct.bind(this)}>Iniciar sesión </button>
+                                    <button type="button" className="btn btn-outline-light" onClick={this.altProduct.bind(this)}>añadir producto </button>
                                     <div ref={self => this.messageError = self}></div>
                                 </div>
                             </form>
