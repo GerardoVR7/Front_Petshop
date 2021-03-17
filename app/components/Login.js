@@ -41,6 +41,9 @@ class Login extends React.Component{
 
                 if (data.idRol === 1){
                     this.verificationRols = true
+                }else
+                {
+                    this.verificationRols = false
                 }
 
             },
@@ -133,12 +136,12 @@ class Login extends React.Component{
                                     <div className="d-grid gap-3 py-3">
                                         <If condition = { this.verification1 === true && this.verification2 === true } >
                                             <If condition={ this.verificationRols === true }>
-                                                <Link to='/HomeClient'>
+                                                <Link to='/HomeAdmin'>
                                                 <button type="button" className="btn btn-outline-light"  id="textcolor">Iniciar sesión</button>
                                                 </Link>
                                             </If>
                                             <If condition={ this.verificationRols === false }>
-                                                <Link to='/HomeAdmin'>
+                                                <Link to='/HomeClient'>
                                                     <button type="button" className="btn btn-outline-light"  id="textcolor">Iniciar sesión</button>
                                                 </Link>
                                             </If>

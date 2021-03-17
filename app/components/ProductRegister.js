@@ -28,6 +28,15 @@ class ProductRegister extends React.Component{
             })
         }, error => { //Entrará acá cuando status = false
         })
+
+        //Extraer el catálogo de roles del backend
+        APIInvoker.invokeGET('/products/getAllPet', data => {  //Entrará acá cuando status = true
+            this.setState({
+                petList : data.data
+            })
+            console.log(this.state.petList)
+        }, error => { //Entrará acá cuando status = false
+        })
     }
 
     changeField(e) {
@@ -206,6 +215,7 @@ class ProductRegister extends React.Component{
                                     <label ref={self=> this.petType = self}></label>
 
                                 </div>
+
                                 <div className="d-grid gap-3 py-3">
                                     <button type="button" className="btn btn-outline-light" onClick={this.altProduct.bind(this)}>Iniciar sesión </button>
                                     <div ref={self => this.messageError = self}></div>
