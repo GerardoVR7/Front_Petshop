@@ -15,6 +15,7 @@ class Login extends React.Component{
 
         this.verification1 = false
         this.verification2 = false
+        this.verificationRols = false
     }
 
     changeField(e) {
@@ -29,7 +30,6 @@ class Login extends React.Component{
 
     usernameValidate(e){
         let username = this.state.username
-
         APIInvoker.invokeGET(`/users/usernameValidate/${username}`,
             data => {
                 //Primera forma de obtener la referencia de un control en el DOM
@@ -37,6 +37,10 @@ class Login extends React.Component{
                 this.label.innerHTML = ''
                 if (data.status === true) {
                     this.verification1 = true
+                }
+
+                if (data.idRol === 1){
+                    this.verificationRols = true
                 }
 
             },
@@ -140,6 +144,7 @@ class Login extends React.Component{
                                                 </Link>
 
                                         </If>
+
                                     </div>
                                 </form>
                             </div>

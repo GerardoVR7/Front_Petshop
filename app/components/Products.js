@@ -7,7 +7,6 @@ import HeaderClient from "./HeaderClient";
 
 class Products extends React.Component {
 
-
     constructor() {
         super()
         this.state = {
