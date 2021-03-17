@@ -70,6 +70,8 @@ class ProductDelete extends React.Component{
         }))
     }
 
+
+
     updateData(e){
 
         //Extraer el catálogo de roles del backend
@@ -89,7 +91,21 @@ class ProductDelete extends React.Component{
 
     }
 
-    render() {
+    deleteProduct(e){
+
+        //Extraer el catálogo de roles del backend
+        let idProducto = this.state.idProducto
+        if (idProducto) {
+            APIInvoker.invokePOST(`/products/deleteProduct/${idProducto}`, data => {  //Entrará acá cuando status = true
+                alert(data.message)
+            }, error => {
+                alert(error.message )
+            })
+        }
+
+    }
+
+    render(){
 
         return(
 
@@ -101,10 +117,10 @@ class ProductDelete extends React.Component{
 
                 <div>
 
-                    <label htmlFor='idCategory'>Tipo de categoria</label>
-                    <select name="idCategory" id="idCategory" value={this.state.idCategory} onChange={this.changeField.bind(this)} onBlur={this.updateData.bind(this)}>
-                        <For each="item" index="idx" of={ this.state.categoryList }>
-                            <option key={idx} value={item.idCategoria}>{item.nombre}</option>
+                    <label htmlFor='idProducto'> Producto a eliminar</label>
+                    <select name="idProducto" id="idProducto" value={this.state.idProducto} onChange={this.changeField.bind(this)}>
+                        <For each="item" index="idx" of={ this.state.productList }>
+                            <option key={idx} value={item.idProducto}>{item.nameProduct}</option>
                         </For>
 
                     </select>
@@ -115,6 +131,7 @@ class ProductDelete extends React.Component{
 
                 <table name="idProducto" id="idProducto" value={this.state.idProducto} onChange={this.changeField.bind(this)} >
                     <tr>
+                        <td> ID </td>
                         <td> Stock </td>
                         <td> Nombre </td>
                         <td> Precio </td>
@@ -123,7 +140,15 @@ class ProductDelete extends React.Component{
                     <tr>
 
                         <td>
-                            <For each="item" index="idx" of={ this.state.specialList }>
+                            <For each="item" index="idx" of={ this.state.productList }>
+                                <li type="circle" key={idx} value={item.idProducto}>
+                                    {item.idProducto}
+                                </li>
+                            </For>
+                        </td>
+
+                        <td>
+                            <For each="item" index="idx" of={ this.state.productList }>
                                 <li type="circle" key={idx} value={item.idProducto}>
                                     {item.quantity}
                                 </li>
@@ -131,7 +156,7 @@ class ProductDelete extends React.Component{
                         </td>
 
                         <td>
-                            <For each="item" index="idx" of={ this.state.specialList }>
+                            <For each="item" index="idx" of={ this.state.productList }>
                                 <li type="circle" key={idx} value={item.idProducto}>
                                     {item.nameProduct}
                                 </li>
@@ -139,7 +164,7 @@ class ProductDelete extends React.Component{
                         </td>
 
                         <td>
-                            <For each="item" index="idx" of={ this.state.specialList }>
+                            <For each="item" index="idx" of={ this.state.productList }>
                                 <li type="circle" key={idx} value={item.idProducto}>
                                     {item.price}
                                 </li>
@@ -149,6 +174,7 @@ class ProductDelete extends React.Component{
                     </tr>
                 </table>
 
+                <button type="button" className="btn btn-outline-light"  id="textcolor" onClick={this.deleteProduct.bind(this)}> ELIMINAR </button>
 
             </div>
 

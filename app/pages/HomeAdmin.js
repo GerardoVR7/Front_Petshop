@@ -23,7 +23,7 @@ class HomeAdmin extends React.Component{
                             <img className="card-img-top" alt="Bootstrap Thumbnail Second"
                                  src='public/images/Delete.png'/>
                             <div className="card-block">
-                                <Link to='/signup'>
+                                <Link to='/DeleteProduct'>
                                     <h2>Borrar Producto</h2>
                                 </Link>
                                 <p>
