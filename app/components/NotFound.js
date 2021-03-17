@@ -7,7 +7,7 @@ class NotFound extends React.Component{
             <>
                 <h1>Pagina no encontrada</h1>
                 <img src="public/images/notFound.png" width={800} height={400} />
-                <Link to='/'>
+                <Link to='/HomeClient'>
                     <h2>Pagina principal</h2>
                 </Link>
             </>
