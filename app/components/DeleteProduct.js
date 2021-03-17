@@ -5,6 +5,7 @@ import {Link} from "react-router-dom";
 import HeaderClient from "./HeaderClient";
 import Header from "./Header";
 import ProductRegister from "./ProductRegister";
+import HeaderAdmin from "./HeaderAdmin";
 
 class ProductDelete extends React.Component{
 
@@ -112,7 +113,7 @@ class ProductDelete extends React.Component{
             <div>
 
                 <Link to='/'>
-                    <h2 id="textcolor"> <HeaderClient/> </h2>
+                    <h2 id="textcolor"> <HeaderAdmin/> </h2>
                 </Link>
 
                 <div>
