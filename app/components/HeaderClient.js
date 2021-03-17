@@ -13,7 +13,7 @@ class HeaderClient extends React.Component {
                                     <Link to='/Conocenos'className="nav-link">Conocenos</Link>
                                 </li>
                                 <li className="nav-item">
-                                    <Link to='/Sucursales' className="nav-link">Sucursales</Link>
+                                    <Link to='/Sucursales' className="nav-link">A cerca de Nosotros</Link>
                                 </li>
                                 <li className="nav-item">
                                     <a className="navbar-brand" href="#">

@@ -1,11 +1,12 @@
 import React from "react";
 import {Link} from "react-router-dom";
+import HeaderAdmin from "../components/HeaderAdmin";
 
 class HomeAdmin extends React.Component{
     render(){
         return(
             <>
-
+                <HeaderAdmin/>
                 <div className="row justify-content-center"  >
                     <ul style={{ height:400, width:600}}>
                         <li className="card">
