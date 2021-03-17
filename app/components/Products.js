@@ -13,7 +13,6 @@ class Products extends React.Component {
         this.state = {
             idProducto: '',
             idCategory: '',
-            nameCategory: '',
             nameProduct:'',
             price:'',
             quantity:'',
@@ -58,19 +57,7 @@ class Products extends React.Component {
         })
 
 
-        //Extraer el catálogo de roles del backend
-        let categoria = this.state.nameCategory
-        if (categoria) {
-            APIInvoker.invokeGET(`/products/getAllAboutDogs/${categoria}`, data => {  //Entrará acá cuando status = true
-                this.setState({
-                    specialList: data.data
-                })
-                console.log(this.state.specialList)
-            }, error => {
-                //Entrará acá cuando status = false
-                alert( "no hay nada")
-            })
-        }
+
     }
 
     changeField(e) {
@@ -84,6 +71,19 @@ class Products extends React.Component {
 
     updateData(e){
 
+        //Extraer el catálogo de roles del backend
+        let idCategory = this.state.idCategory
+        if (idCategory) {
+            APIInvoker.invokeGET(`/products/getAllAboutDogs/${idCategory}`, data => {  //Entrará acá cuando status = true
+                this.setState({
+                    specialList: data.data
+                })
+                console.log(this.state.specialList)
+            }, error => {
+                //Entrará acá cuando status = false
+                alert( "no hay nada")
+            })
+        }
 
 
     }
@@ -103,13 +103,14 @@ class Products extends React.Component {
 
                 <div>
 
-                    <label htmlFor='nameCategory'>Tipo de categoria</label>
-                    <select name="nameCategory" id="nameCategory" value={this.state.nameCategory} onChange={this.changeField.bind(this)}>
+                    <label htmlFor='idCategory'>Tipo de categoria</label>
+                    <select name="idCategory" id="idCategory" value={this.state.idCategory} onChange={this.changeField.bind(this)} onBlur={this.updateData.bind(this)}>
                         <For each="item" index="idx" of={ this.state.categoryList }>
-                            <option key={idx} value={item.nombre}>{item.nombre}</option>
+                            <option key={idx} value={item.idCategoria}>{item.nombre}</option>
                         </For>
 
                     </select>
+
 
                 </div>
 
