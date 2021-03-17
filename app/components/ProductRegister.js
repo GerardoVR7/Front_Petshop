@@ -4,6 +4,7 @@ import APIInvoker from "../utils/APIInvoker";
 import {Link} from "react-router-dom";
 import HeaderClient from "./HeaderClient";
 import Header from "./Header";
+import HeaderAdmin from "./HeaderAdmin";
 
 class ProductRegister extends React.Component{
 
@@ -119,7 +120,7 @@ class ProductRegister extends React.Component{
                 backgroundImage: 'url("public/images/klk.jpg")', height:1033, width:1520
             }}>
                 <div className="container my-5 text-white justify-content-center">
-                    <Header/>
+                    <HeaderAdmin/>
                     <div className="row d-flex justify-content-center">
                         <div className="col-sm-10 col-md-8 col-lg-6 col-xl-6 justify-content-center" id="parte1" style={{
                             backgroundImage: 'url("public/images/img_3.png")'
