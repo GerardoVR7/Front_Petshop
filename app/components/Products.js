@@ -3,6 +3,7 @@ import update from 'immutability-helper'
 import APIInvoker from "../utils/APIInvoker";
 import {Link} from "react-router-dom";
 import Header from "./Header";
+import HeaderClient from "./HeaderClient";
 
 class Products extends React.Component {
 
@@ -97,7 +98,7 @@ class Products extends React.Component {
             <div>
 
                 <Link to='/'>
-                    <h2 id="textcolor"> <Header/> </h2>
+                    <h2 id="textcolor"> <HeaderClient/> </h2>
                 </Link>
 
                 <div>
