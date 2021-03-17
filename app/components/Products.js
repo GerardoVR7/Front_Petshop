@@ -6,15 +6,17 @@ import Header from "./Header";
 
 class Products extends React.Component {
 
+
     constructor() {
         super()
         this.state = {
             idProducto: '',
-            nombre: '',
-            precio: '',
-            cantidad: '',
-            category: '',
-            tipoMascota: '',
+            idCategory: '',
+            nameCategory: '',
+            nameProduct:'',
+            price:'',
+            quantity:'',
+            petType: '',
             productList: [],
             categoryList: [],
             petList: [],
@@ -36,13 +38,12 @@ class Products extends React.Component {
             console.log(this.state.productList)
         }, error => { //Entrará acá cuando status = false
         })
-/*
+
         //Extraer el catálogo de roles del backend
-        APIInvoker.invokeGET('/products/getAllCategory', data => {  //Entrará acá cuando status = true
+        APIInvoker.invokeGET('/categories/getAllCategories',data => {  //Entrará acá cuando status = true
             this.setState({
                 categoryList : data.data
             })
-            console.log(this.state.categoryList)
         }, error => { //Entrará acá cuando status = false
         })
 
@@ -56,10 +57,8 @@ class Products extends React.Component {
         })
 
 
- */
-
         //Extraer el catálogo de roles del backend
-        let categoria = this.state.category
+        let categoria = this.state.nameCategory
         if (categoria) {
             APIInvoker.invokeGET(`/products/getAllAboutDogs/${categoria}`, data => {  //Entrará acá cuando status = true
                 this.setState({
@@ -82,7 +81,11 @@ class Products extends React.Component {
         }))
     }
 
+    updateData(e){
 
+
+
+    }
 
 
     render() {
@@ -99,14 +102,13 @@ class Products extends React.Component {
 
                 <div>
 
-                <select name="categorySelect" id="category" value={this.state.category} onChange={this.changeField.bind(this)}>
-                    <For each="item" index="idx" of={ this.state.specialList }>
-                        <option key={idx} value={item.idProducto}>
-                            {item.Categoria}
-                        </option>
-                    </For>
+                    <label htmlFor='nameCategory'>Tipo de categoria</label>
+                    <select name="nameCategory" id="nameCategory" value={this.state.nameCategory} onChange={this.changeField.bind(this)}>
+                        <For each="item" index="idx" of={ this.state.categoryList }>
+                            <option key={idx} value={item.nombre}>{item.nombre}</option>
+                        </For>
 
-                </select>
+                    </select>
 
                 </div>
 
@@ -123,7 +125,7 @@ class Products extends React.Component {
                             <td>
                                 <For each="item" index="idx" of={ this.state.specialList }>
                                     <li type="circle" key={idx} value={item.idProducto}>
-                                        {item.Cantidad}
+                                        {item.quantity}
                                     </li>
                                 </For>
                             </td>
@@ -131,7 +133,7 @@ class Products extends React.Component {
                             <td>
                                 <For each="item" index="idx" of={ this.state.specialList }>
                                     <li type="circle" key={idx} value={item.idProducto}>
-                                        {item.nombreProducto}
+                                        {item.nameProduct}
                                     </li>
                                 </For>
                             </td>
@@ -139,7 +141,7 @@ class Products extends React.Component {
                             <td>
                                 <For each="item" index="idx" of={ this.state.specialList }>
                                     <li type="circle" key={idx} value={item.idProducto}>
-                                        {item.Precio}
+                                        {item.price}
                                     </li>
                                 </For>
                             </td>
