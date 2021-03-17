@@ -57,7 +57,7 @@ class ProductRegister extends React.Component{
     altProduct(e){
         this.messageError.innerHTML = ''
         this.validarCampos()
-        if (this.status && this.nameProductOk) {
+        if (this.status === true  && this.nameProductOk === true) {
             let product = {
                 idCategory: this.state.idCategory,
                 nameProduct: this.state.nameProduct,
@@ -149,7 +149,7 @@ class ProductRegister extends React.Component{
                                         </For>
 
                                     </select>
-                                    <label ref={self=> this.idCategoria = self}></label>
+                                    <label ref={self=> this.idCategory = self}></label>
                                 </div>
 
 
@@ -187,8 +187,7 @@ class ProductRegister extends React.Component{
                                            placeholder="ingresa la cantidad deseada"
                                            aria-describedby="quantityHelp"
                                            value={this.state.quantity}
-                                           onChange={this.changeField.bind(this)}
-                                           onBlur={this.productValidate.bind(this)}/>
+                                           onChange={this.changeField.bind(this)}/>
                                     <label ref={self=> this.quantity = self}></label>
 
                                 </div>

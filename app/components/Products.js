@@ -3,18 +3,20 @@ import update from 'immutability-helper'
 import APIInvoker from "../utils/APIInvoker";
 import {Link} from "react-router-dom";
 import Header from "./Header";
+import HeaderClient from "./HeaderClient";
 
 class Products extends React.Component {
+
 
     constructor() {
         super()
         this.state = {
             idProducto: '',
-            nombre: '',
-            precio: '',
-            cantidad: '',
-            category: '',
-            tipoMascota: '',
+            idCategory: '',
+            nameProduct:'',
+            price:'',
+            quantity:'',
+            petType: '',
             productList: [],
             categoryList: [],
             petList: [],
@@ -36,13 +38,12 @@ class Products extends React.Component {
             console.log(this.state.productList)
         }, error => { //Entrará acá cuando status = false
         })
-/*
+
         //Extraer el catálogo de roles del backend
-        APIInvoker.invokeGET('/products/getAllCategory', data => {  //Entrará acá cuando status = true
+        APIInvoker.invokeGET('/categories/getAllCategories',data => {  //Entrará acá cuando status = true
             this.setState({
                 categoryList : data.data
             })
-            console.log(this.state.categoryList)
         }, error => { //Entrará acá cuando status = false
         })
 
@@ -56,21 +57,7 @@ class Products extends React.Component {
         })
 
 
- */
 
-        //Extraer el catálogo de roles del backend
-        let categoria = this.state.category
-        if (categoria) {
-            APIInvoker.invokeGET(`/products/getAllAboutDogs/${categoria}`, data => {  //Entrará acá cuando status = true
-                this.setState({
-                    specialList: data.data
-                })
-                console.log(this.state.specialList)
-            }, error => {
-                //Entrará acá cuando status = false
-                alert( "no hay nada")
-            })
-        }
     }
 
     changeField(e) {
@@ -82,7 +69,24 @@ class Products extends React.Component {
         }))
     }
 
+    updateData(e){
 
+        //Extraer el catálogo de roles del backend
+        let idCategory = this.state.idCategory
+        if (idCategory) {
+            APIInvoker.invokeGET(`/products/getAllAboutDogs/${idCategory}`, data => {  //Entrará acá cuando status = true
+                this.setState({
+                    specialList: data.data
+                })
+                console.log(this.state.specialList)
+            }, error => {
+                //Entrará acá cuando status = false
+                alert( "no hay nada")
+            })
+        }
+
+
+    }
 
 
     render() {
@@ -94,19 +98,19 @@ class Products extends React.Component {
             <div>
 
                 <Link to='/'>
-                    <h2 id="textcolor"> <Header/> </h2>
+                    <h2 id="textcolor"> <HeaderClient/> </h2>
                 </Link>
 
                 <div>
 
-                <select name="categorySelect" id="category" value={this.state.category} onChange={this.changeField.bind(this)}>
-                    <For each="item" index="idx" of={ this.state.specialList }>
-                        <option key={idx} value={item.idProducto}>
-                            {item.Categoria}
-                        </option>
-                    </For>
+                    <label htmlFor='idCategory'>Tipo de categoria</label>
+                    <select name="idCategory" id="idCategory" value={this.state.idCategory} onChange={this.changeField.bind(this)} onBlur={this.updateData.bind(this)}>
+                        <For each="item" index="idx" of={ this.state.categoryList }>
+                            <option key={idx} value={item.idCategoria}>{item.nombre}</option>
+                        </For>
 
-                </select>
+                    </select>
+
 
                 </div>
 
@@ -123,7 +127,7 @@ class Products extends React.Component {
                             <td>
                                 <For each="item" index="idx" of={ this.state.specialList }>
                                     <li type="circle" key={idx} value={item.idProducto}>
-                                        {item.Cantidad}
+                                        {item.quantity}
                                     </li>
                                 </For>
                             </td>
@@ -131,7 +135,7 @@ class Products extends React.Component {
                             <td>
                                 <For each="item" index="idx" of={ this.state.specialList }>
                                     <li type="circle" key={idx} value={item.idProducto}>
-                                        {item.nombreProducto}
+                                        {item.nameProduct}
                                     </li>
                                 </For>
                             </td>
@@ -139,7 +143,7 @@ class Products extends React.Component {
                             <td>
                                 <For each="item" index="idx" of={ this.state.specialList }>
                                     <li type="circle" key={idx} value={item.idProducto}>
-                                        {item.Precio}
+                                        {item.price}
                                     </li>
                                 </For>
                             </td>

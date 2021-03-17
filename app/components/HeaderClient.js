@@ -10,14 +10,10 @@ class HeaderClient extends React.Component {
                         <div className="col-md-12" >
                             <ul className="nav nav-pills justify-content-center" >
                                 <li className="nav-item">
-                                    <Link to='/HomeClient/Conocenos'>
-                                    <a className="nav-link" href="#">Conocenos</a>
-                                    </Link>
+                                    <Link to='/Conocenos'className="nav-link">Conocenos</Link>
                                 </li>
                                 <li className="nav-item">
-                                    <Link to='/HomeClient/AboutUs'>
-                                    <a className="nav-link" href="#">Acerca de nosotros</a>
-                                    </Link>
+                                    <Link to='/Sucursales' className="nav-link">Sucursales</Link>
                                 </li>
                                 <li className="nav-item">
                                     <a className="navbar-brand" href="#">
@@ -27,17 +23,11 @@ class HeaderClient extends React.Component {
                                     </a>
                                 </li>
                                 <li className="nav-item">
-                                    <Link to='/HomeClient/Citas'>
-                                    <a className="nav-link" href="#">Citas</a>
-                                    </Link>
+                                    <Link to='/products' className="nav-link">Productos</Link>
                                 </li>
-                                <li className="option">
-                                    <Link to='/HomeClient/Productos'>
-                                        <a className="nav-link" href="#">Productos</a>
-
-                                    </Link>
+                                <li className="nav-item">
+                                    <Link to='/Citas' className="nav-link" >Citas</Link>
                                 </li>
-
                             </ul>
                         </div>
                     </div>

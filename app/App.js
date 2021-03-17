@@ -8,6 +8,9 @@ import Home from "./Home";
 import HomeClient from "./pages/HomeClient";
 import Conocenos from "./pages/Conocenos";
 import ProductRegister from "./components/ProductRegister";
+import Sucursales from "./pages/Sucursales";
+import Citas from "./pages/Citas";
+
 
 
 class App extends React.Component{
@@ -22,6 +25,8 @@ class App extends React.Component{
                     <Route exact path='/HomeClient' component={HomeClient}/>
                     <Route exact path='/Conocenos' component={Conocenos}/>
                     <Route exact path='/ProductRegister' component={ProductRegister}/>
+                    <Route exact path='/Sucursales' component={Sucursales}/>
+                    <Route exact path='/Citas' component={Citas}/>
                     <Route component={NotFound}/>
                 </Switch>
             </BrowserRouter>

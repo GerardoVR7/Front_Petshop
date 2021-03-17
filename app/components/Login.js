@@ -133,12 +133,12 @@ class Login extends React.Component{
                                     </div>
                                     <br/>
                                     <div className="d-grid gap-3 py-3">
-                                        <If condition = {this.verification2 === true} >
-                                            <If condition = {this.verification1 === true} >
+                                        <If condition = { this.verification1 === true && this.verification2 === true } >
+
                                                 <Link to='/HomeClient'>
                                                 <button type="button" className="btn btn-outline-light"  id="textcolor">Iniciar sesión</button>
                                                 </Link>
-                                            </If>
+
                                         </If>
                                     </div>
                                 </form>
