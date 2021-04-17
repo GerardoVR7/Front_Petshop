@@ -12,13 +12,13 @@ class Home extends React.Component{
                 <h1 className="row justify-content-center">
                     Bienvenido a la Pagina principal A garra patas</h1>
                 <div className="row justify-content-center"  >
-                    <ul style={{ height:400, width:600}}>
-                        <li className="card">
+                    <ul style={{ height:250, width:450}}>
+                        <li className="card justify-content-center">
                             <img className="card-img-top" alt="Bootstrap Thumbnail First"
                                  src='public/images/facebookperro.png'/>
                             <div className="card-block justify-content-center" >
                                 <Link to='/Login'>
-                                    <h2>Login</h2>
+                                    <a className="btn btn-primary btn-large justify-content-center " href="#">Login</a>
                                 </Link>
                                 <p>
                                 </p>
@@ -27,9 +27,9 @@ class Home extends React.Component{
                         <li className="card">
                             <img className="card-img-top" alt="Bootstrap Thumbnail Second"
                                  src='public/images/homePerro.png'/>
-                            <div className="card-block">
+                            <div className="card-block justify-content-center">
                                 <Link to='/signup'>
-                                    <h2>SignUp</h2>
+                                    <a className="btn btn-primary btn-large" href="#">Signup</a>
                                 </Link>
                                 <p>
                                 </p>

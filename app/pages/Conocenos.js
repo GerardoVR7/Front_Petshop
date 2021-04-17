@@ -6,7 +6,7 @@ class Conocenos extends React.Component{
     render(){
         return(
                 <div className="xd justify-content-center" id="conocenos" style={{
-                    backgroundImage: 'url("public/images/fondoHome.jpg")', height:1920, width:1080
+                    backgroundImage: 'url("public/images/fondoHome.jpg")', height:1920, minWidth:1520, maxWidth: 2500
                 }}>
                     <HeaderClient />
                     <div className="row justify-content-center"  >
@@ -27,30 +27,31 @@ class Conocenos extends React.Component{
                                     </p>
                                 </div>
                                 </li>
-                <img src="public/images/mascota.jpg" align="right" width='200' height='400'/>
-                <p>
-                    <h2>
+                            <li className="card">
+                <img src="public/images/mascota.jpg"width='500' height='300'/>
+                <p className="card-block">
+                    <h2 className="card-title">
                         UN MISMO
-                        <br/>
                         COMPROMISO
-                        <br/>
                         SALUD ANIMAL
                         </h2>
                     Trabajamos con tenacidad y perseverancia para convertirnos en una empresa ampliamente reconocida por su alta calidad.
                 </p>
+                            </li>
                             <li className="card">
                                 <img className="card-img-top" alt="Bootstrap Thumbnail Second"
-                                     src='public/images/PerriLicenciados.jpg'/>
+                                     src='public/images/PerriLicenciados.jpg' width='300' height='300'/>
                                 <div className="card-block">
                                     <h5 className="card-title">
                                         DE TU INTERÉS
                                     </h5>
+                                    <p >
+                                        dales a tus mascotas la alimentacion perfecta, con nuestros especialistas
+                                        que te daran un plan nutritivo para la buena alimentacion de tu mascota.
+                                    </p>
                                 </div>
                             </li>
-                            <p >
-                                dales a tus mascotas la alimentacion perfecta, con nuestros especialistas
-                                que te daran un plan nutritivo para la buena alimentacion de tu mascota.
-                            </p>
+
                         </ul>
             </div>
                 </div>

@@ -6,10 +6,12 @@ class HomeClient extends React.Component{
     render(){
         return(
             <div style={{
-                backgroundImage: 'url("public/images/fondoHome.jpg")', height:2220, width:1520
+                backgroundImage: 'url("public/images/fondoHome.jpg")', height:2220, minWidth:1520, maxWidth: 2500
             }}>
 
+
                 <HeaderClient />
+
                 <div className="row justify-content-center"  >
                         <ul style={{ height:400, width:600}}>
                         <li className="card">

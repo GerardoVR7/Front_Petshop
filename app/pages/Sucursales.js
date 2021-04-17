@@ -6,10 +6,10 @@ class Sucursales extends React.Component{
     render(){
         return(
             <div className="xd justify-content-center" id="conocenos" style={{
-                backgroundImage: 'url("public/images/fondoHome.jpg")', height:1920, width:1080
+                backgroundImage: 'url("public/images/fondoHome.jpg")', height:1920, minWidth:1520, maxWidth: 2000
             }}>
                 <HeaderClient />
-                <div className="container-fluid">
+                <div className="container-fluid" style={ {minWidth:1000, maxWidth: 1000}}>
                     <div className="row">
                         <div className="col-md-12">
                             <div className="row">
