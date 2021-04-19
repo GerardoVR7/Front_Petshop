@@ -80,7 +80,7 @@ class Login extends React.Component{
         return(
 
             <section  style={{
-                backgroundImage: 'url("public/images/klk.jpg")', height:1033, width:1520
+                backgroundImage: 'url("public/images/klk.jpg")', height:1033, minWidth:1520, maxWidth: 2000
             }}>
 
                     <h2 id="textcolor"> <Header/> </h2>

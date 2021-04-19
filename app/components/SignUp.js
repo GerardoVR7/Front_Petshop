@@ -120,7 +120,7 @@ class SignUp extends React.Component{
     render() {
         return(
                 <section className="xd justify-content-center" id="signup" style={{
-                    backgroundImage: 'url("public/images/klk.jpg")', height:1033, width:1520
+                    backgroundImage: 'url("public/images/klk.jpg")', height:1033, minWidth:1520, maxWidth: 2000
                 }}>
                     <div className="container my-5 text-white justify-content-center">
                         <Header/>
