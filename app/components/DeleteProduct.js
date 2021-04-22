@@ -130,17 +130,18 @@ class ProductDelete extends React.Component{
                 </div>
 
 
-                <table name="idProducto" id="idProducto" value={this.state.idProducto} onChange={this.changeField.bind(this)} >
+                <table className="table" name="idProducto" id="idProducto" value={this.state.idProducto} onChange={this.changeField.bind(this)} >
+                    <thead>
                     <tr>
-                        <td> ID </td>
-                        <td> Stock </td>
-                        <td> Nombre </td>
-                        <td> Precio </td>
+                        <th scope="col">ID</th>
+                        <th scope="col">Stock</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Precio</th>
                     </tr>
-
+                    </thead>
+                    <tbody>
                     <tr>
-
-                        <td>
+                        <td className="table-info">
                             <For each="item" index="idx" of={ this.state.productList }>
                                 <li type="circle" key={idx} value={item.idProducto}>
                                     {item.idProducto}
@@ -148,7 +149,7 @@ class ProductDelete extends React.Component{
                             </For>
                         </td>
 
-                        <td>
+                        <td class="table-primary">
                             <For each="item" index="idx" of={ this.state.productList }>
                                 <li type="circle" key={idx} value={item.idProducto}>
                                     {item.quantity}
@@ -156,7 +157,7 @@ class ProductDelete extends React.Component{
                             </For>
                         </td>
 
-                        <td>
+                        <td className="table-info">
                             <For each="item" index="idx" of={ this.state.productList }>
                                 <li type="circle" key={idx} value={item.idProducto}>
                                     {item.nameProduct}
@@ -164,7 +165,7 @@ class ProductDelete extends React.Component{
                             </For>
                         </td>
 
-                        <td>
+                        <td class="table-primary">
                             <For each="item" index="idx" of={ this.state.productList }>
                                 <li type="circle" key={idx} value={item.idProducto}>
                                     {item.price}
@@ -173,9 +174,10 @@ class ProductDelete extends React.Component{
                         </td>
 
                     </tr>
+                    </tbody>
                 </table>
 
-                <button type="button" className="btn btn-outline-light"  id="textcolor" onClick={this.deleteProduct.bind(this)}> ELIMINAR </button>
+                <button type="button" className="btn btn-warning"  id="textcolor" onClick={this.deleteProduct.bind(this)}> ELIMINAR </button>
 
             </div>
 

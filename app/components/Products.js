@@ -113,51 +113,43 @@ class Products extends React.Component {
 
                 </div>
 
-
-                    <table name="idProducto" id="idProducto" value={this.state.idProducto} onChange={this.changeField.bind(this)} >
-                        <tr>
-                            <td> Stock </td>
-                            <td> Nombre </td>
-                            <td> Precio </td>
-                        </tr>
-
-                        <tr>
-
-                            <td>
-                                <For each="item" index="idx" of={ this.state.specialList }>
-                                    <li type="circle" key={idx} value={item.idProducto}>
-                                        {item.quantity}
-                                    </li>
-                                </For>
-                            </td>
-
-                            <td>
-                                <For each="item" index="idx" of={ this.state.specialList }>
-                                    <li type="circle" key={idx} value={item.idProducto}>
-                                        {item.nameProduct}
-                                    </li>
-                                </For>
-                            </td>
-
-                            <td>
-                                <For each="item" index="idx" of={ this.state.specialList }>
-                                    <li type="circle" key={idx} value={item.idProducto}>
-                                        {item.price}
-                                    </li>
-                                </For>
-                            </td>
-
-                        </tr>
-                    </table>
-
-
-
+                <table className="table" name="idProducto" id="idProducto" value={this.state.idProducto} onChange={this.changeField.bind(this)}>
+                    <thead>
+                    <tr>
+                        <th scope="col"> Stock </th>
+                        <th scope="col"> Nombre </th>
+                        <th scope="col"> Precio </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td class="table-dark">
+                        <For each="item" index="idx" of={ this.state.specialList }>
+                            <li type="circle" key={idx} value={item.idProducto}>
+                                {item.quantity}
+                            </li>
+                        </For>
+                        </td>
+                        <td>
+                            <For each="item" index="idx" of={ this.state.specialList }>
+                                <li type="circle" key={idx} value={item.idProducto}>
+                                    {item.nameProduct}
+                                </li>
+                            </For>
+                        </td>
+                        <td class="table-dark">
+                            <For each="item" index="idx" of={ this.state.specialList }>
+                                <li type="circle" key={idx} value={item.idProducto}>
+                                    {item.price}
+                                </li>
+                            </For>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <button type="button" className="btn btn-success">Success</button>
 
                 </div>
-
-
-
-
 
 
 
