@@ -5,6 +5,7 @@ import {Link} from "react-router-dom";
 import Header from "./Header";
 import HeaderClient from "./HeaderClient";
 
+
 class Products extends React.Component {
 
     constructor() {
@@ -27,6 +28,7 @@ class Products extends React.Component {
         this.categoryList = []
         this.petList = []
         this.specialList = []
+        this.carrito = []
 
 
         //Extraer el catálogo de roles del backend
@@ -87,6 +89,11 @@ class Products extends React.Component {
 
     }
 
+    addToCar(e){
+            //añadir al carrito
+        let idProd
+    }
+
 
     render() {
 
@@ -119,29 +126,49 @@ class Products extends React.Component {
                         <th scope="col"> Stock </th>
                         <th scope="col"> Nombre </th>
                         <th scope="col"> Precio </th>
+                        <th scope="col"> </th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
                         <td class="table-dark">
+
                         <For each="item" index="idx" of={ this.state.specialList }>
-                            <li type="circle" key={idx} value={item.idProducto}>
+                            <li  type="" key={idx} value={item.idProducto}>
+
                                 {item.quantity}
+
                             </li>
                         </For>
                         </td>
                         <td>
                             <For each="item" index="idx" of={ this.state.specialList }>
-                                <li type="circle" key={idx} value={item.idProducto}>
+                                <li type="" key={idx} value={item.idProducto}>
+
                                     {item.nameProduct}
+
                                 </li>
                             </For>
                         </td>
                         <td class="table-dark">
                             <For each="item" index="idx" of={ this.state.specialList }>
-                                <li type="circle" key={idx} value={item.idProducto}>
+                                <li type="" key={idx} value={item.idProducto}>
+
                                     {item.price}
+
                                 </li>
+
+
+                            </For>
+                        </td>
+
+                        <td >
+                            <For each="item" index="idx" of={ this.state.specialList }>
+
+                                <li>
+                                    <button type="button" value={item.nameProduct} id="boton carrito" className="btn btn-success btn-sm">Success</button>
+                                </li>
+
                             </For>
                         </td>
                     </tr>
