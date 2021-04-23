@@ -22,7 +22,14 @@ class Products extends React.Component {
             categoryList: [],
             petList: [],
             specialList: [],
-            pakageList: []
+            pakageList: [],
+            form:{
+                idProducto: '',
+                nameProduct:  '',
+                quantity: '',
+                price: ''
+            }
+
         }
         this.status = false
         this.productList = []
@@ -99,6 +106,7 @@ class Products extends React.Component {
 
 
 
+
         let nameProduct = e
         if (nameProduct) {
             APIInvoker.invokeGET(`/products/productSearch/${nameProduct}` , data => {
@@ -120,11 +128,11 @@ class Products extends React.Component {
     }
 
 
+
+
     render() {
 
         return(
-
-
 
             <div>
 
@@ -196,6 +204,8 @@ class Products extends React.Component {
                                             onClick={this.addToCar.bind(this)} >
                                         Añadir a carrito
                                     </button>
+
+
                                 </li>
 
                             </For>
@@ -203,6 +213,10 @@ class Products extends React.Component {
                     </tr>
                     </tbody>
                 </table>
+
+
+
+
                 <button type="button" className="btn btn-success">Success</button>
 
                 </div>
