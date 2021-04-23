@@ -33,7 +33,7 @@ class HeaderClient extends React.Component {
                                 </li>
                                 <li className="nav-item">
                                     <Link to='/Citas' className="nav-link" >
-                                        <a className="btn btn-primary btn-large justify-content-center " href="#">Citas</a>
+                                        <a className="btn btn-primary btn-large justify-content-center " href="#">Recomendaciones</a>
                                     </Link>
                                 </li>
                             </ul>

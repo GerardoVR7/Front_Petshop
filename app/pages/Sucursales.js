@@ -23,7 +23,7 @@ class Sucursales extends React.Component{
                                             una formación teórico-práctica impartida por profesionales con dilatada experiencia y reconocimiento a nivel mundial en este ámbito.
                                         </p>
                                         <p>
-                                            <a className="btn btn-primary btn-large" href="#">Conocelo</a>
+                                            <a className="btn btn-primary btn-large" href="https://www.facebook.com/christianalonso.pereztrujillo">Conocelo</a>
                                         </p>
                                     </div>
                                 </div>
@@ -39,7 +39,7 @@ class Sucursales extends React.Component{
                                             monogástricos (aves y cerdos) y rumiantes (bovinos). Un máster completo y eficaz que te impulsara a más alto nivel de competencia.
                                         </p>
                                         <p>
-                                            <a className="btn btn-primary btn-large" href="#">Conocelo</a>
+                                            <a className="btn btn-primary btn-large" href="https://www.facebook.com/mario.arturo.391/">Conocelo</a>
                                         </p>
                                     </div>
                                 </div>
@@ -52,7 +52,7 @@ class Sucursales extends React.Component{
                                             En los últimos años, las Terapias e Intervenciones Asistidas Con Animales han experimentado un gran auge en el panorama nacional, extrapolando su uso a diversas especialidades
                                         </p>
                                         <p>
-                                            <a className="btn btn-primary btn-large" href="#">Conocelo</a>
+                                            <a className="btn btn-primary btn-large" href="https://www.facebook.com/gerardo.vazquezroman.7">Conocelo</a>
                                         </p>
                                     </div>
                                 </div>
