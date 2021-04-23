@@ -17,6 +17,7 @@ class Products extends React.Component {
             price:'',
             quantity:'',
             petType: '',
+            venta:'',
             productList: [],
             categoryList: [],
             petList: [],
@@ -29,6 +30,8 @@ class Products extends React.Component {
         this.petList = []
         this.specialList = []
         this.carrito = []
+
+
 
 
         //Extraer el catálogo de roles del backend
@@ -78,8 +81,10 @@ class Products extends React.Component {
             APIInvoker.invokeGET(`/products/getAllAboutDogs/${idCategory}`, data => {  //Entrará acá cuando status = true
                 this.setState({
                     specialList: data.data
+
                 })
                 console.log(this.state.specialList)
+                console.log(this.specialList.length)
             }, error => {
                 //Entrará acá cuando status = false
                 alert( "no hay nada")
@@ -91,7 +96,27 @@ class Products extends React.Component {
 
     addToCar(e){
             //añadir al carrito
-        let idProd
+
+
+
+        let nameProduct = e
+        if (nameProduct) {
+            APIInvoker.invokeGET(`/products/productSearch/${nameProduct}` , data => {
+
+                let sell = data.data
+
+                APIInvoker.invokePOST('/products/insertProductSell',sell, data => {
+                    alert(data.message)
+
+                }, error => {
+                    alert(error.message + error.error)
+                })
+
+
+        })
+
+    }
+
     }
 
 
@@ -163,10 +188,14 @@ class Products extends React.Component {
                         </td>
 
                         <td >
-                            <For each="item" index="idx" of={ this.state.specialList }>
+                            <For each="item" index="idx"  of={ this.state.specialList } >
 
                                 <li>
-                                    <button type="button" value={item.nameProduct} id="boton carrito" className="btn btn-success btn-sm">Success</button>
+
+                                    <button type="button" value={item.nameProduct} id="boton carrito" className="btn btn-success btn-sm"
+                                            onClick={this.addToCar.bind(this)} >
+                                        Añadir a carrito
+                                    </button>
                                 </li>
 
                             </For>
