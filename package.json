@@ -31,6 +31,7 @@
     "jsx-control-statements": "^3.2.8",
     "path": "^0.12.7",
     "react-hot-loader": "^4.13.0",
+    "reactstrap": "^8.9.0",
     "webpack": "^5.21.1",
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.2"

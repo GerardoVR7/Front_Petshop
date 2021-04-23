@@ -4,6 +4,7 @@ import APIInvoker from "../utils/APIInvoker";
 import {Link} from "react-router-dom";
 import Header from "./Header";
 import HeaderClient from "./HeaderClient";
+import {Table} from "reactstrap";
 
 
 class Products extends React.Component {
@@ -17,18 +18,20 @@ class Products extends React.Component {
             price:'',
             quantity:'',
             petType: '',
-            venta:'',
+
+            form: {
+               nameProduct: '',
+               price: '',
+                cantidad: '',
+               total:  ''
+            },
+            cantidadVendida:'',
             productList: [],
             categoryList: [],
             petList: [],
             specialList: [],
-            pakageList: [],
-            form:{
-                idProducto: '',
-                nameProduct:  '',
-                quantity: '',
-                price: ''
-            }
+            subtotalList: [],
+
 
         }
         this.status = false
@@ -46,7 +49,7 @@ class Products extends React.Component {
             this.setState({
                 productList : data.data
             })
-            console.log(this.state.productList)
+
         }, error => { //Entrará acá cuando status = false
         })
 
@@ -63,7 +66,7 @@ class Products extends React.Component {
             this.setState({
                 petList : data.data
             })
-            console.log(this.state.petList)
+
         }, error => { //Entrará acá cuando status = false
         })
 
@@ -90,8 +93,8 @@ class Products extends React.Component {
                     specialList: data.data
 
                 })
-                console.log(this.state.specialList)
-                console.log(this.specialList.length)
+
+
             }, error => {
                 //Entrará acá cuando status = false
                 alert( "no hay nada")
@@ -104,15 +107,16 @@ class Products extends React.Component {
     addToCar(e){
             //añadir al carrito
 
-
-
-
         let nameProduct = e
+
         if (nameProduct) {
             APIInvoker.invokeGET(`/products/productSearch/${nameProduct}` , data => {
 
-                let sell = data.data
-
+                let sell = {
+                    nameProduct: data.data.nameProduct,
+                    quantitySold: this.state.cantidadVendida,
+                    price: data.data.price
+                }
                 APIInvoker.invokePOST('/products/insertProductSell',sell, data => {
                     alert(data.message)
 
@@ -120,15 +124,29 @@ class Products extends React.Component {
                     alert(error.message + error.error)
                 })
 
-
         })
 
     }
 
     }
 
+    handleChange(e) {
+        this.setState({
+            form: {
+                ...this.state.form,
+                [e.target.name]: e.target.value,
+            },
+        });
+    };
 
+    insertar(e){
+        var valorNuevo= {...this.state.form};
+        valorNuevo.id=this.state.data.length+1;
+        var lista= this.state.subtotalList;
+        lista.push(valorNuevo);
+        console.log(this.state.subtotalList);
 
+    }
 
     render() {
 
@@ -150,71 +168,67 @@ class Products extends React.Component {
 
                     </select>
 
-
                 </div>
 
-                <table className="table" name="idProducto" id="idProducto" value={this.state.idProducto} onChange={this.changeField.bind(this)}>
-                    <thead>
-                    <tr>
-                        <th scope="col"> Stock </th>
-                        <th scope="col"> Nombre </th>
-                        <th scope="col"> Precio </th>
-                        <th scope="col"> </th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td class="table-dark">
+                <Table className='container'>
+                <thead>
+                <tr>
+                    <th> ID </th>
+                    <th> Nombre </th>
+                    <th> Precio </th>
+                    <th> Cantidad </th>
+                </tr>
+                </thead>
+                <tbody >
+                    {
+                        this.state.specialList.map((producto, index)=>(
+                            <tr>
+                                <td className='list-group-item' key={`item-${index}`}>
+                                    {producto.idProducto}
+                                </td>
 
-                        <For each="item" index="idx" of={ this.state.specialList }>
-                            <li  type="" key={idx} value={item.idProducto}>
+                                <td >
+                                    {producto.nameProduct}
+                                </td>
 
-                                {item.quantity}
+                                <td >
+                                    {producto.price}
+                                </td>
 
-                            </li>
-                        </For>
-                        </td>
-                        <td>
-                            <For each="item" index="idx" of={ this.state.specialList }>
-                                <li type="" key={idx} value={item.idProducto}>
+                                <td >
+                                    {producto.quantity}
+                                </td>
 
-                                    {item.nameProduct}
-
-                                </li>
-                            </For>
-                        </td>
-                        <td class="table-dark">
-                            <For each="item" index="idx" of={ this.state.specialList }>
-                                <li type="" key={idx} value={item.idProducto}>
-
-                                    {item.price}
-
-                                </li>
-
-
-                            </For>
-                        </td>
-
-                        <td >
-                            <For each="item" index="idx"  of={ this.state.specialList } >
-
-                                <li>
-
-                                    <button type="button" value={item.nameProduct} id="boton carrito" className="btn btn-success btn-sm"
-                                            onClick={this.addToCar.bind(this)} >
-                                        Añadir a carrito
+                                <td>
+                                    <button color="primary" onClick={(e)=> this.addToCar(producto.nameProduct, e)}>
+                                        Añadir al carrito
                                     </button>
+                                </td>
 
+                                <td>
+                                    <div className="mb-2">
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        name="cantidadVendida"
+                                        id="cantidadVendida"
+                                        placeholder="ingresa la cantidad deseada"
+                                        aria-describedby="cantidadVendidaHelp"
+                                        value={this.state.cantidadVendida}
+                                        onChange={this.changeField.bind(this)}/>
+                                        <label ref={self=> this.cantidadVendida = self}></label>
 
-                                </li>
+                                    </div>
 
-                            </For>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
+                                </td>
 
+                            </tr>
 
+                        ))
+                    }
+                </tbody>
+
+                </Table>
 
 
                 <button type="button" className="btn btn-success">Success</button>
