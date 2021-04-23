@@ -18,19 +18,15 @@ class Products extends React.Component {
             price:'',
             quantity:'',
             petType: '',
+            total: '',
 
-            form: {
-               nameProduct: '',
-               price: '',
-                cantidad: '',
-               total:  ''
-            },
             cantidadVendida:'',
             productList: [],
             categoryList: [],
             petList: [],
             specialList: [],
             subtotalList: [],
+            carritoList: []
 
 
         }
@@ -39,7 +35,7 @@ class Products extends React.Component {
         this.categoryList = []
         this.petList = []
         this.specialList = []
-        this.carrito = []
+        this.carritoList = []
 
 
 
@@ -48,6 +44,15 @@ class Products extends React.Component {
         APIInvoker.invokeGET('/products/getAllProducts', data => {  //Entrará acá cuando status = true
             this.setState({
                 productList : data.data
+            })
+
+        }, error => { //Entrará acá cuando status = false
+        })
+
+        //Extraer el catálogo de roles del backend
+        APIInvoker.invokeGET('/sells/getAllVentas', data => {  //Entrará acá cuando status = true
+            this.setState({
+                carritoList : data.data
             })
 
         }, error => { //Entrará acá cuando status = false
@@ -120,6 +125,8 @@ class Products extends React.Component {
                 APIInvoker.invokePOST('/products/insertProductSell',sell, data => {
                     alert(data.message)
 
+
+
                 }, error => {
                     alert(error.message + error.error)
                 })
@@ -130,22 +137,19 @@ class Products extends React.Component {
 
     }
 
-    handleChange(e) {
-        this.setState({
-            form: {
-                ...this.state.form,
-                [e.target.name]: e.target.value,
-            },
-        });
-    };
+    calculo(e){
+        var count =0;
+        var valor = 0;
+            for(var i=0; i<this.state.carritoList.length ; i++){
 
-    insertar(e){
-        var valorNuevo= {...this.state.form};
-        valorNuevo.id=this.state.data.length+1;
-        var lista= this.state.subtotalList;
-        lista.push(valorNuevo);
-        console.log(this.state.subtotalList);
+                valor = this.state.carritoList[i].quantitySold * this.state.carritoList[i].price;
+                count = count + valor;
+            }
 
+       alert("Precio a pagar:        "  + count )
+
+        console.log(this.state.carritoList.length)
+        console.log(count)
     }
 
     render() {
@@ -227,11 +231,54 @@ class Products extends React.Component {
                         ))
                     }
                 </tbody>
+                </Table>
+
+                <br/>
+                <br/>
+
+                <aside className="col-sm-4"/>
+                    <h2>Carrito</h2>
+
+                <Table className='container'>
+                    <thead>
+                    <tr>
+
+                        <th> Nombre </th>
+                        <th> Precio </th>
+                        <th> Cantidad </th>
+
+                    </tr>
+                    </thead>
+                    <tbody >
+                    {
+                        this.state.carritoList.map((venta, index)=>(
+                            <tr>
+
+                                <td >
+                                    {venta.nameProduct}
+                                </td>
+
+                                <td >
+                                    {venta.price}
+                                </td>
+
+                                <td >
+                                    {venta.quantitySold}
+                                </td>
+
+
+
+
+                            </tr>
+
+                        ))
+                    }
+                    </tbody>
 
                 </Table>
 
 
-                <button type="button" className="btn btn-success">Success</button>
+                <button type="button" className="btn btn-success" onClick={this.calculo.bind(this)}>Success</button>
 
                 </div>
 
