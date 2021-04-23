@@ -20,6 +20,7 @@ class Products extends React.Component {
             petType: '',
             total: '',
 
+
             cantidadVendida:'',
             productList: [],
             categoryList: [],
@@ -113,11 +114,13 @@ class Products extends React.Component {
             //añadir al carrito
 
         let nameProduct = e
-
+        let aux = 0;
+        let aux2 = 0;
         if (nameProduct) {
             APIInvoker.invokeGET(`/products/productSearch/${nameProduct}` , data => {
-
-                let sell = {
+                    aux = data.data.idProducto;
+                    aux2 = data.data.quantity - this.state.cantidadVendida;
+                    let sell = {
                     nameProduct: data.data.nameProduct,
                     quantitySold: this.state.cantidadVendida,
                     price: data.data.price
@@ -125,15 +128,29 @@ class Products extends React.Component {
                 APIInvoker.invokePOST('/products/insertProductSell',sell, data => {
                     alert(data.message)
 
-
-
                 }, error => {
                     alert(error.message + error.error)
                 })
 
+                let aux3 = {
+                    quantity: data.data.quantity - this.state.cantidadVendida,
+                    idProducto: data.data.idProducto
+                }
+                APIInvoker.invokePOST('/products/updateProduct',aux3, data => {  //Entrará acá cuando status = true
+
+                }, error => {
+                    //Entrará acá cuando status = false
+                    alert( "no hay nada")
+                })
+
+                console.log(aux)
+                console.log(aux2)
         })
 
+
+
     }
+
 
     }
 
@@ -150,6 +167,24 @@ class Products extends React.Component {
 
         console.log(this.state.carritoList.length)
         console.log(count)
+
+        for (var i=0; i<this.state.carritoList.length ; i++){
+
+            let delSell = this.state.carritoList[i].idVenta
+
+            console.log(delSell)
+
+            APIInvoker.invokePOST(`/sells/deleteSell/${delSell}`, data => {
+                alert(data.message)
+
+            }, error => {
+                alert(error.message + error.error)
+            })
+
+        }
+
+
+
     }
 
     render() {
@@ -242,11 +277,9 @@ class Products extends React.Component {
                 <Table className='container'>
                     <thead>
                     <tr>
-
                         <th> Nombre </th>
                         <th> Precio </th>
                         <th> Cantidad </th>
-
                     </tr>
                     </thead>
                     <tbody >
@@ -265,9 +298,6 @@ class Products extends React.Component {
                                 <td >
                                     {venta.quantitySold}
                                 </td>
-
-
-
 
                             </tr>
 
