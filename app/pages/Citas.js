@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {Link} from "react-router-dom";
 import HeaderClient from "../components/HeaderClient";
-import Calendar from "react-calendar";
+
 
 class Citas extends React.Component{
     render(){
